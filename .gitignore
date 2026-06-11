@@ -30,3 +30,8 @@ app/dist-ssr
 app/.codex-vite.err
 app/.codex-vite.log
 app/dist.zip
+
+node/
+dist.zip
+scratch/
+

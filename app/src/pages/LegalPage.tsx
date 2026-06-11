@@ -1,5 +1,6 @@
 import Breadcrumb from '../components/Breadcrumb';
 import Button from '../components/Button';
+import SEO from '../components/SEO';
 
 interface LegalPageProps {
   type: 'privacy' | 'terms';
@@ -34,6 +35,10 @@ export default function LegalPage({ type }: LegalPageProps) {
 
   return (
     <>
+      <SEO 
+        title={`${page.title} | Digioverse Digital Agency UK`}
+        description={page.intro}
+      />
       <section className="bg-gradient-to-b from-[#f7f7fa] to-[#eee7ff] pt-36 pb-20">
         <div className="max-w-[960px] mx-auto px-5 md:px-8 lg:px-12">
           <Breadcrumb current={page.title} />
