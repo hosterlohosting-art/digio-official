@@ -55,26 +55,39 @@ export default function BookAppointmentPage() {
     setStatus('loading');
 
     try {
-      const response = await fetch('/sendmail.php', {
+      const payload = {
+        _subject: 'New Appointment Booking Request',
+        name: formData.name,
+        businessName: formData.businessName,
+        phone: formData.phone,
+        email: formData.email,
+        service: formData.service,
+        budget: formData.budget,
+        preferredTime: formData.preferredTime,
+        message: formData.message,
+      };
+
+      const promise1 = fetch('https://formsubmit.co/ajax/thedigioverse@gmail.com', {
         method: 'POST',
-        headers: {
+        headers: { 
           'Content-Type': 'application/json',
+          'Accept': 'application/json'
         },
-        body: JSON.stringify({
-          formType: 'appointment_booking',
-          name: formData.name,
-          businessName: formData.businessName,
-          phone: formData.phone,
-          email: formData.email,
-          service: formData.service,
-          budget: formData.budget,
-          message: formData.message,
-          preferredTime: formData.preferredTime,
-        }),
+        body: JSON.stringify(payload),
       });
 
-      const data = await response.json();
-      if (response.ok && data.success) {
+      const promise2 = fetch('https://formsubmit.co/ajax/digioverseuk@gmail.com', {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const [res1, res2] = await Promise.all([promise1, promise2]);
+
+      if (res1.ok || res2.ok) {
         setStatus('success');
         setFormData({
           name: '',
@@ -89,7 +102,7 @@ export default function BookAppointmentPage() {
         });
       } else {
         setStatus('error');
-        setStatusMessage(data.message || 'Something went wrong. Please try again.');
+        setStatusMessage('Something went wrong. Please try again.');
       }
     } catch (err) {
       console.error('Submission error:', err);

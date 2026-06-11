@@ -47,28 +47,40 @@ export default function ContactPage() {
 
     setFormState('loading');
     try {
-      const response = await fetch('/sendmail.php', {
+      const payload = {
+        _subject: 'New Message from Contact Form',
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        company: formData.company,
+        service: formData.service,
+        budget: formData.budget,
+        preferredTime: formData.preferredTime,
+        message: formData.message,
+      };
+
+      const promise1 = fetch('https://formsubmit.co/ajax/thedigioverse@gmail.com', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          company: formData.company,
-          service: formData.service,
-          budget: formData.budget,
-          preferredTime: formData.preferredTime,
-          message: formData.message,
-        }),
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(payload),
       });
 
-      if (!response.ok) {
-        throw new Error('Form submission failed');
-      }
+      const promise2 = fetch('https://formsubmit.co/ajax/digioverseuk@gmail.com', {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(payload),
+      });
 
-      const result = await response.text();
-      if (result.toLowerCase().includes('error')) {
-        throw new Error('Mail handler returned an error');
+      const [res1, res2] = await Promise.all([promise1, promise2]);
+
+      if (!res1.ok && !res2.ok) {
+        throw new Error('Form submission failed');
       }
 
       setFormState('success');

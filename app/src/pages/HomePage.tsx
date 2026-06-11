@@ -135,21 +135,36 @@ export default function HomePage() {
     setLeadState('loading');
 
     try {
-      const response = await fetch('/sendmail.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          source: 'Homepage hero lead form',
-          name: leadForm.name,
-          email: leadForm.email,
-          service: leadForm.service,
-          budget: leadForm.budget,
-          message: leadForm.message,
-        }),
-      });
-      const result = await response.text();
+      const payload = {
+        _subject: 'New Lead Plan Request - Homepage',
+        name: leadForm.name,
+        email: leadForm.email,
+        service: leadForm.service,
+        budget: leadForm.budget,
+        message: leadForm.message,
+      };
 
-      if (!response.ok || result.toLowerCase().includes('error')) {
+      const promise1 = fetch('https://formsubmit.co/ajax/thedigioverse@gmail.com', {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const promise2 = fetch('https://formsubmit.co/ajax/digioverseuk@gmail.com', {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const [res1, res2] = await Promise.all([promise1, promise2]);
+
+      if (!res1.ok && !res2.ok) {
         throw new Error('Lead form failed');
       }
 

@@ -35,22 +35,33 @@ export default function BlogPage() {
     e.preventDefault();
     setNewsletterState('loading');
     try {
-      const response = await fetch('/sendmail.php', {
+      const payload = {
+        _subject: 'New Newsletter Subscription',
+        email: newsletterEmail,
+      };
+
+      const promise1 = fetch('https://formsubmit.co/ajax/thedigioverse@gmail.com', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          source: 'Newsletter subscription form',
-          email: newsletterEmail,
-        }),
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(payload),
       });
 
-      if (!response.ok) {
-        throw new Error('Subscription failed');
-      }
+      const promise2 = fetch('https://formsubmit.co/ajax/digioverseuk@gmail.com', {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(payload),
+      });
 
-      const result = await response.text();
-      if (result.toLowerCase().includes('error')) {
-        throw new Error('Subscription handler returned an error');
+      const [res1, res2] = await Promise.all([promise1, promise2]);
+
+      if (!res1.ok && !res2.ok) {
+        throw new Error('Subscription failed');
       }
 
       setNewsletterState('success');
