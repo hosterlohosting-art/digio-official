@@ -19,6 +19,8 @@ const FAQsPage = lazy(() => import('./pages/FAQsPage'));
 const BookAppointmentPage = lazy(() => import('./pages/BookAppointmentPage'));
 const UKLandingPage = lazy(() => import('./pages/UKLandingPage'));
 const USALandingPage = lazy(() => import('./pages/USALandingPage'));
+const WokingLocationPage = lazy(() => import('./pages/WokingLocationPage'));
+const SurreyLocationPage = lazy(() => import('./pages/SurreyLocationPage'));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -99,6 +101,8 @@ export default function App() {
             <Route path="/book-appointment" element={<BookAppointmentPage />} />
             <Route path="/uk" element={<UKLandingPage />} />
             <Route path="/usa" element={<USALandingPage />} />
+            <Route path="/locations/woking" element={<WokingLocationPage />} />
+            <Route path="/locations/surrey" element={<SurreyLocationPage />} />
             <Route path="/work" element={<WorkPage />} />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/contact" element={<ContactPage />} />

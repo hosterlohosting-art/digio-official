@@ -95,7 +95,7 @@ export default function PricingPage() {
   return (
     <>
       <SEO
-        title="Website Design Packages UK | Affordable Web Design Pricing"
+        title="Website Design Pricing UK | Affordable Packages from £995 | Digioverse"
         description="Explore Digioverse website design packages for UK businesses, including starter websites, business websites, premium websites, ecommerce stores, SEO, hosting, and support."
       />
 

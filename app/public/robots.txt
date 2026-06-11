@@ -5,7 +5,7 @@ Disallow: /wp-content/
 Disallow: /wp-includes/
 Disallow: /xmlrpc.php
 Disallow: /cgi-bin/
-Disallow: *?*
+Disallow: /search?
+Disallow: /*?*sort=
 
 Sitemap: https://digioverse.com/sitemap.xml
-

@@ -74,7 +74,7 @@ export default function BookAppointmentPage() {
   return (
     <>
       <SEO
-        title="Book a Free Appointment | Digioverse UK"
+        title="Book a Free Consultation | Website & Marketing Audit | Digioverse"
         description="Book a free same-day appointment with Digioverse to discuss your website, SEO, digital marketing, branding, or business growth project."
       />
 

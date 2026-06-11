@@ -66,7 +66,7 @@ export default function BlogPage() {
   return (
     <>
       <SEO 
-        title="UK Business Growth Blog & Insights | Digioverse"
+        title="UK Business Growth Blog | Digital Marketing Insights | Digioverse"
         description="Read expert insights on website design, SEO, Google & Meta Ads, conversion rate optimization, ecommerce growth, and business automation from the Digioverse team."
       />
 

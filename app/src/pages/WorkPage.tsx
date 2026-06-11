@@ -37,7 +37,7 @@ export default function WorkPage() {
   return (
     <>
       <SEO 
-        title="Our Work | Premium Digital Agency & SEO Case Studies UK"
+        title="Portfolio & Case Studies | Web Design & SEO Work | Digioverse"
         description="Explore the Digioverse portfolio. Read real-world case studies in website design, search engine optimization (SEO), custom SaaS development, and high-ROI Google/Meta Ads campaigns."
       />
 

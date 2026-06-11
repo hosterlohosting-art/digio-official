@@ -1,0 +1,35 @@
+# llms.txt for Digioverse
+# Last updated: 2026-06-11
+
+Digioverse is a UK web design and digital marketing agency based in Woking, Surrey.
+Company: DIGIOVERSE LTD, Company Number 17236340.
+Address: 1A North Rd, Woking GU21 5DS, UK.
+Phone: +44 20 4615 5575.
+Email: support@digioverse.com.
+Website: https://digioverse.com
+
+Services:
+- Website Design: Custom business websites from £995. WordPress and React/Next.js.
+- Web Development: Custom React and Next.js applications with headless CMS.
+- SEO Services: Technical SEO, content strategy, link building. From £995/month.
+- Google Ads Management: PPC campaigns for UK businesses.
+- Meta Ads Management: Facebook and Instagram advertising.
+- Local SEO: Google Business Profile optimisation.
+- E-commerce: Shopify and WooCommerce development.
+- SaaS Development: Custom software and product development.
+- Branding & Identity: Logo design, brand guidelines, messaging.
+- Website Maintenance: Ongoing support, updates, security.
+
+Industries: Law firms, accountants, medical clinics, dental practices, real estate, construction, restaurants, ecommerce.
+
+Pricing:
+- Starter Website: £995 (5 pages)
+- Business Website: £2,495 (10 pages)
+- Ecommerce Website: £3,995
+- Premium Website: £4,995
+- SaaS & Custom: Contact for quote
+- SEO: From £995/month
+- Google Ads: From £1,495/month
+
+Primary service area: United Kingdom
+Office location: Woking, Surrey, England

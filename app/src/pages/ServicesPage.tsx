@@ -120,7 +120,7 @@ export default function ServicesPage() {
   return (
     <>
       <SEO
-        title="Web Design & Digital Marketing Services UK | Digioverse"
+        title="Web Design, SEO & Digital Marketing Services UK | Digioverse"
         description="Digioverse offers professional website design, custom web development, local SEO, Google Ads, Meta Ads, branding, hosting, and business automation services in the UK."
       />
 

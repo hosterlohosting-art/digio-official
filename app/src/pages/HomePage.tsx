@@ -155,6 +155,33 @@ export default function HomePage() {
         description="Digioverse helps UK businesses build powerful websites, stronger brands, and digital systems that convert visitors into real customers. Book a free same-day appointment."
       />
 
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Digioverse",
+            "alternateName": "DIGIOVERSE LTD",
+            "url": "https://digioverse.com",
+            "logo": "https://digioverse.com/assets/favicon.jpg",
+            "telephone": "+442046155575",
+            "email": "support@digioverse.com",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "1A North Rd",
+              "addressLocality": "Woking",
+              "addressRegion": "Surrey",
+              "postalCode": "GU21 5DS",
+              "addressCountry": "GB"
+            },
+            "sameAs": [
+              "https://clutch.co/profile/digioverse"
+            ]
+          })
+        }}
+      />
+
       {/* Hero */}
       <section className="relative min-h-[90dvh] bg-[#0d0520] overflow-hidden flex items-center pt-24 pb-12">
         <GradientGlowBackground />
