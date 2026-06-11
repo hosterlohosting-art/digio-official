@@ -119,10 +119,19 @@ export default function HomePage() {
     service: 'Web Development',
     budget: '£100 - £500',
     message: '',
+    website: '', // honeypot spam protection
   });
 
   const submitLead = async (event: React.FormEvent) => {
     event.preventDefault();
+
+    if (leadForm.website) {
+      // If honeypot is filled, simulate success silently
+      setLeadState('success');
+      setLeadForm({ name: '', email: '', service: 'Web Development', budget: '£100 - £500', message: '', website: '' });
+      return;
+    }
+
     setLeadState('loading');
 
     try {
@@ -131,7 +140,11 @@ export default function HomePage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           source: 'Homepage hero lead form',
-          ...leadForm,
+          name: leadForm.name,
+          email: leadForm.email,
+          service: leadForm.service,
+          budget: leadForm.budget,
+          message: leadForm.message,
         }),
       });
       const result = await response.text();
@@ -141,7 +154,7 @@ export default function HomePage() {
       }
 
       setLeadState('success');
-      setLeadForm({ name: '', email: '', service: 'Web Development', budget: '£100 - £500', message: '' });
+      setLeadForm({ name: '', email: '', service: 'Web Development', budget: '£100 - £500', message: '', website: '' });
     } catch (error) {
       console.error(error);
       setLeadState('error');
@@ -226,6 +239,17 @@ export default function HomePage() {
               </div>
 
               <div className="space-y-3">
+                {/* Honeypot field for spam prevention */}
+                <div className="hidden" aria-hidden="true">
+                  <input
+                    type="text"
+                    name="website"
+                    value={leadForm.website}
+                    onChange={(event) => setLeadForm({ ...leadForm, website: event.target.value })}
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
+                </div>
                 <input
                   required
                   minLength={2}

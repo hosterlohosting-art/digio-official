@@ -19,6 +19,7 @@ export default function BookAppointmentPage() {
     budget: 'Under £3,000',
     message: '',
     preferredTime: 'Morning 9-12',
+    website: '', // honeypot spam protection
   });
 
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
@@ -33,6 +34,24 @@ export default function BookAppointmentPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (formData.website) {
+      // If honeypot is filled, simulate success silently
+      setStatus('success');
+      setFormData({
+        name: '',
+        businessName: '',
+        phone: '',
+        email: '',
+        service: 'Website Design',
+        budget: 'Under £3,000',
+        message: '',
+        preferredTime: 'Morning 9-12',
+        website: '',
+      });
+      return;
+    }
+
     setStatus('loading');
 
     try {
@@ -43,7 +62,14 @@ export default function BookAppointmentPage() {
         },
         body: JSON.stringify({
           formType: 'appointment_booking',
-          ...formData
+          name: formData.name,
+          businessName: formData.businessName,
+          phone: formData.phone,
+          email: formData.email,
+          service: formData.service,
+          budget: formData.budget,
+          message: formData.message,
+          preferredTime: formData.preferredTime,
         }),
       });
 
@@ -59,6 +85,7 @@ export default function BookAppointmentPage() {
           budget: 'Under £3,000',
           message: '',
           preferredTime: 'Morning 9-12',
+          website: '',
         });
       } else {
         setStatus('error');
@@ -125,6 +152,17 @@ export default function BookAppointmentPage() {
                 </ScrollReveal>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  {/* Honeypot field for spam prevention */}
+                  <div className="hidden" aria-hidden="true">
+                    <input
+                      type="text"
+                      name="website"
+                      value={formData.website}
+                      onChange={handleChange}
+                      tabIndex={-1}
+                      autoComplete="off"
+                    />
+                  </div>
                   <div className="grid sm:grid-cols-2 gap-6">
                     <div>
                       <label htmlFor="name" className={labelClass}>Full Name *</label>

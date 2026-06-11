@@ -2,6 +2,7 @@ import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { useEffect, lazy, Suspense } from 'react';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
+import CookieConsent from './components/CookieConsent';
 import { Phone } from 'lucide-react';
 
 // Lazy load pages for chunk splitting and rapid initial loads
@@ -56,6 +57,7 @@ export default function App() {
       <div className="grain-overlay" />
       <ScrollToTop />
       <Navigation />
+      <CookieConsent />
       
       {/* Floating Call & WhatsApp Buttons */}
       <div className="fixed bottom-6 right-6 z-[9999] flex flex-col gap-3 items-end">

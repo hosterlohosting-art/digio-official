@@ -30,16 +30,36 @@ export default function ContactPage() {
   const [formState, setFormState] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [formData, setFormData] = useState({
     name: '', email: '', phone: '', company: '', service: '', budget: '', message: '', preferredTime: '',
+    website: '', // honeypot spam protection
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (formData.website) {
+      // If honeypot is filled, simulate success silently
+      setFormState('success');
+      setFormData({
+        name: '', email: '', phone: '', company: '', service: '', budget: '', message: '', preferredTime: '', website: ''
+      });
+      return;
+    }
+
     setFormState('loading');
     try {
       const response = await fetch('/sendmail.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          company: formData.company,
+          service: formData.service,
+          budget: formData.budget,
+          preferredTime: formData.preferredTime,
+          message: formData.message,
+        }),
       });
 
       if (!response.ok) {
@@ -52,7 +72,7 @@ export default function ContactPage() {
       }
 
       setFormState('success');
-      setFormData({ name: '', email: '', phone: '', company: '', service: '', budget: '', message: '', preferredTime: '' });
+      setFormData({ name: '', email: '', phone: '', company: '', service: '', budget: '', message: '', preferredTime: '', website: '' });
     } catch (error) {
       console.error(error);
       setFormState('error');
@@ -111,6 +131,17 @@ export default function ContactPage() {
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-5 mt-8">
+                    {/* Honeypot field for spam prevention */}
+                    <div className="hidden" aria-hidden="true">
+                      <input
+                        type="text"
+                        name="website"
+                        value={formData.website}
+                        onChange={(e) => setFormData({ ...formData, website: e.target.value })}
+                        tabIndex={-1}
+                        autoComplete="off"
+                      />
+                    </div>
                     <div>
                       <label className={labelClass}>Your Name *</label>
                       <input type="text" required minLength={2} value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} placeholder="John Smith" className={inputClass} />
