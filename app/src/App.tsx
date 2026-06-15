@@ -11,6 +11,7 @@ const AboutPage = lazy(() => import('./pages/AboutPage'));
 const ServicesPage = lazy(() => import('./pages/ServicesPage'));
 const WorkPage = lazy(() => import('./pages/WorkPage'));
 const BlogPage = lazy(() => import('./pages/BlogPage'));
+const BlogDetailPage = lazy(() => import('./pages/BlogDetailPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
 const ServiceDetailPage = lazy(() => import('./pages/ServiceDetailPage'));
 const LegalPage = lazy(() => import('./pages/LegalPage'));
@@ -107,6 +108,7 @@ export default function App() {
             <Route path="/locations/surrey" element={<SurreyLocationPage />} />
             <Route path="/work" element={<WorkPage />} />
             <Route path="/blog" element={<BlogPage />} />
+            <Route path="/blog/:slug" element={<BlogDetailPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/privacy" element={<LegalPage type="privacy" />} />
             <Route path="/terms" element={<LegalPage type="terms" />} />

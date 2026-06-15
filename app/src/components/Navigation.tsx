@@ -62,6 +62,21 @@ export default function Navigation() {
             : 'bg-[rgba(255,255,255,0.92)] backdrop-blur-[22px] shadow-[0_1px_0_rgba(221,208,244,0.85),0_18px_50px_rgba(13,5,32,0.15)]'
         }`}
       >
+        {/* Top bar with company registration details */}
+        <div
+          className={`bg-[#0d0520] text-[#c7a7ff] text-[10px] sm:text-xs font-semibold tracking-wider transition-all duration-400 ease-in-out overflow-hidden flex items-center justify-center border-b border-[#2b094f]/50 ${
+            scrolled ? 'h-0 opacity-0 border-none' : 'h-8 opacity-100 py-1'
+          }`}
+        >
+          <div className="max-w-[1280px] mx-auto px-5 md:px-8 lg:px-12 flex flex-wrap items-center justify-center gap-x-6 gap-y-1 text-center w-full font-['Outfit']">
+            <span>DIGIOVERSE LTD</span>
+            <span className="hidden sm:inline text-white/20">•</span>
+            <span>Company No. <strong className="text-white">17236340</strong></span>
+            <span className="hidden sm:inline text-white/20">•</span>
+            <span>Registered Office: <strong className="text-white">1A North Rd, Woking GU21 5DS</strong></span>
+          </div>
+        </div>
+
         <div className="max-w-[1280px] mx-auto px-5 md:px-8 lg:px-12 flex items-center justify-between h-[82px] md:h-[82px]">
           <Link to="/" className="flex items-center gap-3 transition-transform duration-300 hover:-translate-y-0.5" aria-label="Digioverse home">
             <img src="/assets/digioverse-logo.png" alt="Digioverse" className="h-11 w-auto drop-shadow-[0_8px_18px_rgba(13,5,32,0.14)]" />
