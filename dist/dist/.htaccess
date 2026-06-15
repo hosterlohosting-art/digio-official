@@ -1,0 +1,21 @@
+# Apache Rewrite Rules for React Router (Single Page Application)
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  # Redirect /home or /home/ to root /
+  RewriteRule ^home/?$ / [L,R=301]
+
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME} !-l
+  RewriteRule . /index.html [L]
+</IfModule>
+
+# Security Headers
+<IfModule mod_headers.c>
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set X-Content-Type-Options "nosniff"
+  Header set Referrer-Policy "no-referrer-when-downgrade"
+  Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+</IfModule>
