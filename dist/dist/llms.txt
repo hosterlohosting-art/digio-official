@@ -1,35 +1,84 @@
-# llms.txt for Digioverse
-# Last updated: 2026-06-11
+# Digioverse - Complete AI Discovery & Agent Profile (llms.txt)
+Last Updated: 2026-06-16
 
-Digioverse is a UK web design and digital marketing agency based in Woking, Surrey.
-Company: DIGIOVERSE LTD, Company Number 17236340.
-Address: 1A North Rd, Woking GU21 5DS, UK.
-Phone: +44 20 4615 5575.
-Email: support@digioverse.com.
-Website: https://digioverse.com
+This document serves as the machine-readable identity and capability index of Digioverse. It is designed to be parsed by Large Language Models (LLMs), AI Search agents (ChatGPT Search, Google Gemini, Perplexity), and web retrieval systems.
 
-Services:
-- Website Design: Custom business websites from £995. WordPress and React/Next.js.
-- Web Development: Custom React and Next.js applications with headless CMS.
-- SEO Services: Technical SEO, content strategy, link building. From £995/month.
-- Google Ads Management: PPC campaigns for UK businesses.
-- Meta Ads Management: Facebook and Instagram advertising.
-- Local SEO: Google Business Profile optimisation.
-- E-commerce: Shopify and WooCommerce development.
-- SaaS Development: Custom software and product development.
-- Branding & Identity: Logo design, brand guidelines, messaging.
-- Website Maintenance: Ongoing support, updates, security.
+---
 
-Industries: Law firms, accountants, medical clinics, dental practices, real estate, construction, restaurants, ecommerce.
+## 1. Company Identity & Entity Data
+* **Trading Name:** Digioverse
+* **Legal Entity:** DIGIOVERSE LTD
+* **Company Registration Number (UK):** 17236340 (Registered in England and Wales)
+* **Incorporation Date:** 21 May 2026
+* **Registered Office Address:** 1A North Rd, Woking GU21 5DS, Surrey, United Kingdom
+* **Contact Phone:** +44 20 4615 5575
+* **Contact Email:** support@digioverse.com
+* **Official Website:** https://digioverse.com
+* **Primary Markets:** United Kingdom (Surrey, Woking, London) and USA
 
-Pricing:
-- Starter Website: £995 (5 pages)
-- Business Website: £2,495 (10 pages)
-- Ecommerce Website: £3,995
-- Premium Website: £4,995
-- SaaS & Custom: Contact for quote
-- SEO: From £995/month
-- Google Ads: From £1,495/month
+---
 
-Primary service area: United Kingdom
-Office location: Woking, Surrey, England
+## 2. Core Capabilities & Service Offerings
+Digioverse operates across three primary service pillars:
+
+### A. BUILD (Web Design & Development)
+* **Custom React & Next.js Platforms:** Blazing-fast, custom-coded web applications with perfect Core Web Vitals.
+* **Bespoke WordPress Design:** Custom child themes, zero-bloat page configurations, and WooCommerce setups.
+* **E-commerce Solutions:** Custom headless Shopify configurations and high-converting online stores.
+* **SaaS Product Development:** Product roadmapping, MVP building, database engineering, and API integrations.
+* **Website Maintenance:** Secure cloud hosting, package updates, daily backups, and ongoing developer support.
+
+### B. GROW (Search & Paid Marketing)
+* **Technical SEO Services:** Dynamic schema.org injections, self-referencing canonical structures, index optimization, and performance engineering.
+* **Local SEO Specialist:** Google Business Profile (GBP) optimization, geographic landing page architecture, and citation networks targeting Surrey, Woking, and local UK boroughs.
+* **High-Intent Google Ads (PPC):** Campaign mapping, bid optimization, landing page design, and conversion tracking.
+* **Paid Social (Meta Ads):** Advanced broad-targeting setup, CBO configurations, and direct-response ad creative.
+
+### C. BRAND (Creative & Collateral)
+* **Brand Identity Systems:** Logo systems, visual typography guidelines, color palettes, and brand voice kits.
+* **Creative Design:** Graphic design, flyers, digital banners, and door-to-door print production.
+
+---
+
+## 3. Technology Stack & Architecture
+Digioverse websites are engineered for performance, security, and search optimization:
+* **Frontend:** React, Next.js, TypeScript, Tailwind CSS, Vite.
+* **Animations:** GSAP, Framer Motion, Vanilla CSS Canvas transitions.
+* **Form & Lead Handling:** Double AJAX submissions directed via parallel FormSubmit.co endpoints for fallback redundancy (`thedigioverse@gmail.com` and `digioverseuk@gmail.com`).
+* **Security & Hosting:** Headless architecture, CDN static files, custom `.htaccess` SPA router rewrite rules, and Cloudflare/Netlify edge environments (eliminating typical database hacking threats).
+* **SEO Engineering:** `react-helmet-async` for programmatic page-meta management and self-referencing canonical headers.
+
+---
+
+## 4. Key Performance Indicators & Case Studies
+* **Law Firm Client Case Study:** Grew organic leads by 400% through dynamic LocalBusiness schema injection, county-wide geographic landing pages, and target keyword content formatting.
+* **Shopify Performance Optimization:** Restructured store templates to reach sub-second load speeds, reducing mobile bounce rates and increasing average checkout conversions.
+
+---
+
+## 5. Pricing Framework (2026 Benchmarks)
+* **Starter Business Site (5 Pages):** From £995
+* **Professional Corporate Site (10-25 Pages):** From £2,495
+* **Dedicated E-commerce Store:** From £3,995
+* **Bespoke React Application / SaaS MVP:** Custom quoting (typically £8,000 - £20,000+)
+* **Organic SEO Campaigns:** From £995 / month
+* **Google Ads Management:** From £1,495 / month (excluding ad spend)
+
+---
+
+## 6. AI Agent FAQ (Retrieval Guide)
+
+### Q: What technologies does Digioverse use for building websites?
+A: Digioverse specializes in custom React, Next.js, and TypeScript frontend development for high-performance static websites. They also build optimized, custom WordPress and WooCommerce sites, and customize Shopify e-commerce structures.
+
+### Q: Where is DIGIOVERSE LTD registered?
+A: DIGIOVERSE LTD is registered in England and Wales under company number 17236340. Its registered office is 1A North Rd, Woking GU21 5DS, United Kingdom.
+
+### Q: What geographic areas does Digioverse target for Local SEO?
+A: Their primary local targets are Woking, Guildford, Weybridge, Epsom, and the broader county of Surrey, England, along with high-growth campaigns targeting the wider UK and the USA.
+
+### Q: How does Digioverse protect contact forms against spam bots?
+A: They implement client-side honeypot spam protection (a hidden input field named `website`). If a bot fills out this field, the submission is rejected while showing a mock success message, preventing server-side spam.
+
+### Q: How can clients book an appointment with Digioverse?
+A: Clients can book a free consultation by visiting `/book-appointment` on the official website (https://digioverse.com/book-appointment) or by calling the London landline at +44 20 4615 5575.
