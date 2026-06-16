@@ -272,12 +272,38 @@ const serviceData: Record<string, ServiceInfo> = {
 type ServiceSlug = keyof typeof serviceData;
 
 export default function ServiceDetailPage() {
-  const { slug } = useParams();
-  const service = serviceData[slug as ServiceSlug];
+  const { slug } = useParams<{ slug: string }>();
+  const service = slug ? serviceData[slug as ServiceSlug] : null;
 
   if (!service) {
     return <Navigate to="/services" replace />;
   }
+
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": service.title,
+    "description": service.intro,
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Digioverse",
+      "image": "https://digioverse.com/assets/digioverse-logo.png",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "1A North Rd",
+        "addressLocality": "Woking",
+        "addressRegion": "Surrey",
+        "postalCode": "GU21 5DS",
+        "addressCountry": "GB"
+      },
+      "telephone": "+442046155575",
+      "priceRange": "££"
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "United Kingdom"
+    }
+  };
 
   const Icon = service.icon;
 
@@ -287,6 +313,11 @@ export default function ServiceDetailPage() {
         title={service.seoTitle || `${service.title} | Digioverse`} 
         description={service.seoDescription || service.intro} 
       />
+
+      {/* JSON-LD Schema.org Structured Data */}
+      <script type="application/ld+json">
+        {JSON.stringify(serviceSchema)}
+      </script>
 
       <section className="bg-gradient-to-b from-[#f7f7fa] to-[#eee7ff] pt-28 pb-16">
         <div className="max-w-[1280px] mx-auto px-5 md:px-8 lg:px-12">

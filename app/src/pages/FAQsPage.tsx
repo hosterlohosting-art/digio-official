@@ -58,12 +58,30 @@ const faqItems = [
 ];
 
 export default function FAQsPage() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqItems.map((item) => ({
+      "@type": "Question",
+      "name": item.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.answer
+      }
+    }))
+  };
+
   return (
     <>
       <SEO
         title="FAQs | Digioverse Web Design & Digital Marketing UK"
         description="Find answers to common questions about Digioverse website design, SEO, digital marketing, pricing, hosting, business email, maintenance, and booking a free appointment."
       />
+
+      {/* JSON-LD Schema.org Structured Data */}
+      <script type="application/ld+json">
+        {JSON.stringify(faqSchema)}
+      </script>
 
       {/* Hero Section */}
       <section className="pt-24 pb-16 md:pt-32 md:pb-20 bg-[#f7f7fa] relative overflow-hidden">
