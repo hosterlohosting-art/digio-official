@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Breadcrumb from '../components/Breadcrumb';
 import CharacterScatter from '../components/CharacterScatter';
 import ScrollReveal from '../components/ScrollReveal';
@@ -270,6 +271,55 @@ export default function WokingLocationPage() {
                 <p className="mt-3 text-sm leading-relaxed text-[#53445f] pl-6 border-l border-[#6a00ff]/30">
                   {item.a}
                 </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Latest Growth Resources Section */}
+      <section className="bg-gradient-to-b from-white to-[#f7f7fa] py-16 md:py-24 border-t border-[#ddd0f4]/50">
+        <div className="max-w-[1280px] mx-auto px-5 md:px-8 lg:px-12">
+          <div className="text-center max-w-[700px] mx-auto mb-16">
+            <span className="text-xs font-semibold uppercase tracking-wide text-[#6a00ff]">SEO & Growth Resources</span>
+            <h2 className="text-3xl md:text-5xl font-bold text-[#0d0520] font-['Plus_Jakarta_Sans'] mt-4">
+              Latest Insights for Woking Businesses
+            </h2>
+            <p className="text-base text-[#53445f] mt-4">
+              Actionable advice on website design pricing, local SEO, and platform performance compiled by our founders.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                title: "The Complete UK Local SEO Checklist: Dominate Surrey and Woking Local Search",
+                desc: "A step-by-step local search checklist focusing on Google Business Profile, local schemas, map coordinates, and citation targets.",
+                slug: "uk-local-seo-checklist-surrey-woking",
+                readTime: "12 min read"
+              },
+              {
+                title: "WordPress vs Custom React Code: Which is Better for Small Business SEO in the UK?",
+                desc: "Comparing PageSpeed, Core Web Vitals, security overhead, and custom schema injection between WordPress and bespoke React code.",
+                slug: "wordpress-vs-custom-react-seo",
+                readTime: "11 min read"
+              },
+              {
+                title: "How Much Does a Website Cost in the UK? (2026 Price Guide)",
+                desc: "A completely transparent pricing guide breaking down freelance rates, agency pricing, and ongoing hosting/maintenance costs in the UK.",
+                slug: "how-much-does-a-website-cost-uk",
+                readTime: "9 min read"
+              }
+            ].map((article, i) => (
+              <div key={i} className="bg-white border border-[#ddd0f4]/80 p-8 rounded-3xl hover:shadow-lg transition-all duration-300 flex flex-col h-full font-['Outfit']">
+                <span className="text-xs text-[#7d718c] font-semibold">{article.readTime}</span>
+                <h3 className="text-lg font-bold text-[#0d0520] font-['Plus_Jakarta_Sans'] mt-3 mb-3 leading-snug hover:text-[#6a00ff] transition-colors">
+                  <Link to={`/blog/${article.slug}`}>{article.title}</Link>
+                </h3>
+                <p className="text-sm leading-relaxed text-[#53445f] flex-1 mb-6">{article.desc}</p>
+                <Link to={`/blog/${article.slug}`} className="text-sm font-bold text-[#6a00ff] hover:text-[#3b0a75] transition-colors flex items-center gap-1.5 mt-auto">
+                  Read Local Guide &rarr;
+                </Link>
               </div>
             ))}
           </div>
