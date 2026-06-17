@@ -321,7 +321,7 @@ export default function ServiceDetailPage() {
 
       <section className="bg-gradient-to-b from-[#f7f7fa] to-[#eee7ff] pt-28 pb-16">
         <div className="max-w-[1280px] mx-auto px-5 md:px-8 lg:px-12">
-          <Breadcrumb current={service.title} />
+          <Breadcrumb current={service.title} parent={{ label: 'Services', href: '/services' }} />
           <div className="grid lg:grid-cols-[minmax(0,1fr)_460px] gap-12 items-center mt-8">
             <div>
               <div className="inline-flex items-center gap-3 rounded-full bg-white border border-[#ddd0f4] px-4 py-2 shadow-[0_12px_30px_rgba(13,5,32,0.06)]">

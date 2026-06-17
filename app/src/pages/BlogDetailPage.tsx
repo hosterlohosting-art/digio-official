@@ -171,7 +171,7 @@ export default function BlogDetailPage() {
       {/* Article Header */}
       <section className="bg-gradient-to-b from-[#f7f7fa] to-[#eee7ff] pt-36 pb-16">
         <div className="max-w-[1280px] mx-auto px-5 md:px-8 lg:px-12">
-          <Breadcrumb current={article.title} />
+          <Breadcrumb current={article.title} parent={{ label: 'Blog', href: '/blog' }} />
           
           <div className="mt-8">
             <Link 
