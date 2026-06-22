@@ -47,8 +47,9 @@ export default function Navigation() {
   const navLinks = [
     { label: 'Services', href: '/services' },
     { label: 'Pricing', href: '/pricing' },
+    { label: 'Projects', href: '/work' },
+    { label: 'Products', href: '/products' },
     { label: 'Industries', href: '/industries' },
-    { label: 'Work', href: '/work' },
     { label: 'About', href: '/about' },
     { label: 'Blog', href: '/blog' },
   ];
@@ -62,20 +63,7 @@ export default function Navigation() {
             : 'bg-[rgba(255,255,255,0.92)] backdrop-blur-[22px] shadow-[0_1px_0_rgba(221,208,244,0.85),0_18px_50px_rgba(13,5,32,0.15)]'
         }`}
       >
-        {/* Top bar with company registration details */}
-        <div
-          className={`bg-[#0d0520] text-[#c7a7ff] text-[10px] sm:text-xs font-semibold tracking-wider transition-all duration-400 ease-in-out overflow-hidden flex items-center justify-center border-b border-[#2b094f]/50 ${
-            scrolled ? 'h-0 opacity-0 border-none' : 'h-8 opacity-100 py-1'
-          }`}
-        >
-          <div className="max-w-[1280px] mx-auto px-5 md:px-8 lg:px-12 flex flex-wrap items-center justify-center gap-x-6 gap-y-1 text-center w-full font-['Outfit']">
-            <span>DIGIOVERSE LTD</span>
-            <span className="hidden sm:inline text-white/20">•</span>
-            <span>Company No. <strong className="text-white">17236340</strong></span>
-            <span className="hidden sm:inline text-white/20">•</span>
-            <span>Registered Office: <strong className="text-white">1A North Rd, Woking GU21 5DS</strong></span>
-          </div>
-        </div>
+
 
         <div className="max-w-[1280px] mx-auto px-5 md:px-8 lg:px-12 flex items-center justify-between h-[82px] md:h-[82px]">
           <Link to="/" className="flex items-center gap-3 transition-transform duration-300 hover:-translate-y-0.5" aria-label="Digioverse home">
@@ -136,12 +124,17 @@ export default function Navigation() {
           </nav>
 
           <div className="flex items-center gap-3">
-            {/* Landline Call Button */}
+            {/* Landline Call & WhatsApp Button */}
             <a
-              href="tel:+442046155575"
+              href="https://wa.me/442046155575"
+              target="_blank"
+              rel="noopener noreferrer"
               className="hidden lg:inline-flex items-center gap-2 border border-[#ddd0f4] bg-white text-[#2b094f] hover:text-[#6a00ff] font-semibold text-sm px-5 py-3 rounded-full hover:-translate-y-0.5 transition-all duration-300 shadow-[0_4px_12px_rgba(13,5,32,0.02)]"
             >
               <Phone className="w-4 h-4 text-[#6a00ff]" />
+              <svg className="w-4 h-4 fill-[#25D366] shrink-0" viewBox="0 0 24 24">
+                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008 0c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.625 1.451 5.403.002 9.803-4.394 9.806-9.799.002-2.618-1.01-5.078-2.854-6.924C16.379 2.036 13.918 1.023 11.3 1.02c-5.41 0-9.81 4.396-9.813 9.801-.001 1.77.472 3.498 1.368 5.037L1.825 21.8l6.162-1.616-.34-.23zm8.995-5.918c-.287-.143-1.697-.838-1.959-.933-.261-.096-.452-.143-.642.143-.19.286-.736.933-.902 1.124-.167.19-.333.214-.62.071-.286-.143-1.21-.446-2.305-1.424-.853-.76-1.428-1.7-1.595-1.985-.167-.286-.018-.44.125-.581.129-.127.287-.333.43-.5.143-.167.19-.286.286-.476.096-.19.048-.357-.024-.5-.071-.143-.642-1.548-.88-2.12-.232-.558-.467-.482-.642-.491-.167-.008-.357-.01-.548-.01-.19 0-.5.071-.762.357-.262.286-1 .976-1 2.38 0 1.405 1.023 2.762 1.166 2.952.143.19 2.013 3.074 4.877 4.31.682.293 1.215.469 1.63.601.687.218 1.312.187 1.806.114.55-.082 1.697-.692 1.937-1.36.24-.668.24-1.24.167-1.36-.072-.12-.262-.19-.548-.332z" />
+              </svg>
               <span>020 4615 5575</span>
             </a>
 

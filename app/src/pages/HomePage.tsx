@@ -2,7 +2,6 @@ import GradientGlowBackground from '../components/GradientGlowBackground';
 import CharacterScatter from '../components/CharacterScatter';
 import ScrollReveal from '../components/ScrollReveal';
 import ServiceCard from '../components/ServiceCard';
-import PortfolioCard from '../components/PortfolioCard';
 import StatCounter from '../components/StatCounter';
 import Button from '../components/Button';
 import SEO from '../components/SEO';
@@ -19,63 +18,7 @@ const services = [
   { icon: TrendingUp, title: 'Business Growth Support', description: 'Ongoing digital support for updates, campaigns, and improvements.', link: '/services' },
 ];
 
-const portfolio = [
-  { 
-    image: '/assets/law-firm-website-seo.png', 
-    businessType: 'Law Firm', 
-    title: 'Law Firm Website & SEO', 
-    description: 'Modern personal injury website with clear CTAs and trust-focused content.',
-    result: '140+ leads generated monthly',
-    link: '/work'
-  },
-  { 
-    image: '/assets/uh-properties-real-estate.png', 
-    businessType: 'Real Estate', 
-    title: 'UH Properties Digital Platform', 
-    description: 'High-end real estate portal with custom map search and WhatsApp chat flows.',
-    result: '4.8% visitor-to-lead conversion rate',
-    link: '/work'
-  },
-  { 
-    image: '/assets/clinic-booking-system.png', 
-    businessType: 'Healthcare', 
-    title: 'Clinic Booking System', 
-    description: 'Custom React website integrated with client intake workflows and automated SMS reminders.',
-    result: '+45% increase in online bookings',
-    link: '/work'
-  },
-  { 
-    image: '/assets/shopify-fashion-store.png', 
-    businessType: 'E-commerce', 
-    title: 'Headless Shopify Fashion Store', 
-    description: 'Ultra-fast Next.js storefront configured for mobile-first checkouts and user retention.',
-    result: '+38% average order value increase',
-    link: '/work'
-  },
-  { 
-    image: '/assets/ppc-lead-acquisition-funnel.png', 
-    businessType: 'Local Services', 
-    title: 'PPC Lead Acquisition Funnel', 
-    description: 'Targeted Google & Meta Ads dashboard setup with localized landing pages.',
-    result: '2.1x increase in phone enquiries',
-    link: '/work'
-  },
-  { 
-    image: '/assets/attorney-core-practice-platform.png', 
-    businessType: 'SaaS Startup', 
-    title: 'Attorney Core Practice Platform', 
-    description: 'Cloud dashboard with document automation, case manager workflows, and intake panels.',
-    result: '50+ active firm subscriptions',
-    link: '/work'
-  },
-];
 
-const saasProducts = [
-  { image: '/assets/attorney-core-dashboard-v2.png', name: 'Attorney Core', description: 'Practice management software for modern law firms with case workflows, client intake, billing, and document automation.', tags: ['Legal SaaS', 'Client Portal', 'Billing', 'Automation'] },
-  { image: '/assets/omnilo-dashboard-v2.png', name: 'Omnilo', description: 'A lead and outreach platform built to help service businesses capture, organise, and convert opportunities faster.', tags: ['Lead Capture', 'CRM', 'Automation', 'Growth'] },
-  { image: '/assets/hosterlo-dashboard-v2.png', name: 'Hosterlo', description: 'Managed hosting and infrastructure for fast, secure websites with dependable support and modern deployment workflows.', tags: ['Hosting', 'Security', 'Performance', 'Support'] },
-  { image: '/assets/gowasender-dashboard-v2.png', name: 'goWASender', description: 'WhatsApp communication tooling for campaigns, reminders, and customer engagement at scale.', tags: ['WhatsApp', 'Messaging', 'Campaigns', 'CRM'] },
-];
 
 const processSteps = [
   { icon: ClipboardList, title: 'Free Consultation', description: 'We understand your business and goals.' },
@@ -93,11 +36,32 @@ const whyDigioverse = [
   { icon: HeartHandshake, title: 'Direct Founder Access', desc: 'Work directly with founders Ahsan (7+ years of experience in SEO & development) and Mehar Hassan (12+ years of experience in digital marketing and growth).' }
 ];
 
+const team = [
+  { 
+    name: 'Ahsan', 
+    role: 'Managing Director, Co-Founder & Developer', 
+    bio: 'With 7+ years of professional experience in SEO, digital marketing, and full-stack software engineering, Ahsan drives the core technical architecture and organic visibility strategies for Digioverse.', 
+    image: '/assets/ahsan_founder.jpg' 
+  },
+  { 
+    name: 'Mehar Hassan', 
+    role: 'Co-Founder & Head of Growth', 
+    bio: 'Bringing 12+ years of elite experience in digital strategy and customer acquisition, Mehar Hassan architects high-converting advertising funnels and client growth pipelines that scale businesses.', 
+    image: '/assets/mehar_founder.png' 
+  },
+  { 
+    name: 'Musa Shahzad', 
+    role: 'Senior Web & Automation Engineer', 
+    bio: 'With 4+ years of specialized experience in high-performance frontend frameworks and deep database/API integrations, Musa constructs robust web applications and automated workflows.', 
+    image: '/assets/musa.png' 
+  },
+];
+
 const previewPackages = [
-  { name: 'Starter Website', price: '£995', desc: 'Custom 5-page setup ideal for startups.' },
-  { name: 'Business Website', price: '£2,495', desc: '10-page premium setup with full Booking/CMS.' },
-  { name: 'Premium Website', price: '£4,995', desc: 'Custom enterprise branding and UI animations.' },
-  { name: 'Ecommerce Store', price: '£3,995', desc: 'Shopify / WooCommerce scaling powerhouse.' }
+  { name: 'Starter Website', price: '£499*', desc: 'Custom 5-page setup ideal for startups.' },
+  { name: 'Business Website', price: '£999', desc: '10-page premium setup with full Booking/CMS.' },
+  { name: 'Premium Website', price: '£1,499', desc: 'Custom enterprise branding and UI animations.' },
+  { name: 'Ecommerce Store', price: '£699', desc: 'Shopify / WooCommerce scaling powerhouse.' }
 ];
 
 const trustLogos = [
@@ -503,60 +467,35 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Portfolio Showcase / Recent Work */}
-      <section className="bg-[#f7f7fa] py-16 md:py-24 border-b border-[#ddd0f4]/50">
-        <div className="max-w-[1280px] mx-auto px-5 md:px-8 lg:px-12">
-          <ScrollReveal className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
-            <div>
-              <span className="text-xs font-semibold uppercase tracking-wide text-[#6a00ff]">Our Work</span>
-              <CharacterScatter text="Recent Work That Helps Businesses Look Better Online" className="text-[36px] md:text-[56px] font-semibold text-[#0d0520] leading-[1.1] tracking-[-0.02em] mt-4 font-['Plus_Jakarta_Sans']" as="h2" />
+      {/* Portfolio Showcase / Recent Work (Minimized Teaser) */}
+      <section className="bg-[#f7f7fa] py-16 md:py-20 border-b border-[#ddd0f4]/50">
+        <div className="max-w-[1280px] mx-auto px-5 md:px-8 lg:px-12 text-center">
+          <ScrollReveal>
+            <span className="text-xs font-semibold uppercase tracking-wide text-[#6a00ff]">Our Projects</span>
+            <CharacterScatter text="Bespoke Work Built for Commercial Impact" className="text-[36px] md:text-[56px] font-semibold text-[#0d0520] leading-[1.1] tracking-[-0.02em] mt-4 font-['Plus_Jakarta_Sans']" as="h2" />
+            <p className="text-base text-[#53445f] mt-4 max-w-[620px] mx-auto leading-relaxed">
+              Explore our full collection of custom website systems, digital products, SEO search campaigns, and high-ROI landing pages built for businesses across the UK.
+            </p>
+            <div className="mt-8">
+              <Button to="/work">Explore Our Projects Portfolio &rarr;</Button>
             </div>
-            <Button variant="tertiary" to="/work">View All Work</Button>
           </ScrollReveal>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {portfolio.map((p, i) => (
-              <ScrollReveal key={p.title} delay={i * 0.08}>
-                <PortfolioCard {...p} />
-              </ScrollReveal>
-            ))}
-          </div>
         </div>
       </section>
 
-      {/* SaaS Products */}
-      <section className="bg-[#f7f7fa] py-16 md:py-24 border-b border-[#ddd0f4]/50">
-        <div className="max-w-[1280px] mx-auto px-5 md:px-8 lg:px-12">
+      {/* SaaS Products (Minimized Teaser) */}
+      <section className="bg-[#f7f7fa] py-16 md:py-20 border-b border-[#ddd0f4]/50">
+        <div className="max-w-[1280px] mx-auto px-5 md:px-8 lg:px-12 text-center">
           <ScrollReveal>
-            <span className="text-xs font-semibold uppercase tracking-wide text-[#3b0a75]">Our Products</span>
-            <CharacterScatter text="SaaS Products Built for Modern Businesses" className="text-[36px] md:text-[56px] font-semibold text-[#0d0520] leading-[1.1] tracking-[-0.02em] mt-4 font-['Plus_Jakarta_Sans']" as="h2" />
-            <p className="text-lg text-[#53445f] mt-4 max-w-[720px] leading-relaxed">
-              We engineer proprietary SaaS platforms, headless cloud systems, and customized customer outreach solutions built with highly scalable backend frameworks. Explore our operational suites that are built to transform your daily operations and grow search and sales outreach.
+            <span className="text-xs font-semibold uppercase tracking-wide text-[#3b0a75]">Our SaaS Products</span>
+            <CharacterScatter text="Proprietary Tools Built to Automate Operations" className="text-[36px] md:text-[56px] font-semibold text-[#0d0520] leading-[1.1] tracking-[-0.02em] mt-4 font-['Plus_Jakarta_Sans']" as="h2" />
+            <p className="text-base text-[#53445f] mt-4 max-w-[620px] mx-auto leading-relaxed">
+              We engineer managed cloud hosting services, legal CRM software, WhatsApp marketing automation suites, and custom database web applications.
             </p>
+            <div className="mt-8">
+              <Button to="/products" variant="secondary">View Our SaaS Products &rarr;</Button>
+            </div>
           </ScrollReveal>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
-            {saasProducts.map((product, i) => (
-              <ScrollReveal key={product.name} delay={i * 0.15} y={60}>
-                <div className="bg-white rounded-[20px] overflow-hidden shadow-[0_4px_24px_rgba(13,5,32,0.06)] hover:shadow-[0_8px_40px_rgba(13,5,32,0.1)] hover:-translate-y-1 transition-all duration-300 group">
-                  <div className="aspect-[4/3] overflow-hidden">
-                    <img src={product.image} alt={product.name} className="w-full h-full object-cover object-top transition-transform duration-600 group-hover:scale-105" loading="lazy" />
-                  </div>
-                  <div className="p-8">
-                    <h3 className="text-xl font-semibold text-[#0d0520] font-['Plus_Jakarta_Sans']">{product.name}</h3>
-                    <p className="text-[#53445f] mt-3 text-sm leading-relaxed">{product.description}</p>
-                    <div className="flex flex-wrap gap-2 mt-4">
-                      {product.tags.map((tag) => (
-                        <span key={tag} className="text-xs font-medium text-[#6a00ff] bg-[rgba(106,0,255,0.1)] px-3 py-1 rounded-full">{tag}</span>
-                      ))}
-                    </div>
-                    <Button variant="tertiary" to="/services" className="mt-5">Learn More</Button>
-                  </div>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
-          <div className="text-center mt-12">
-            <Button variant="secondary" to="/services">Explore All Products</Button>
-          </div>
         </div>
       </section>
 
@@ -621,6 +560,41 @@ export default function HomePage() {
                 </div>
                 <h3 className="text-xl font-bold text-[#f7f7fa] font-['Plus_Jakarta_Sans'] mt-6">{item.title}</h3>
                 <p className="text-[#c7a7ff]/80 text-sm mt-3 leading-relaxed">{item.desc}</p>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Team Showcase */}
+      <section className="bg-gradient-to-b from-[#f7f7fa] to-[#eee7ff] py-16 md:py-24">
+        <div className="max-w-[1280px] mx-auto px-5 md:px-8 lg:px-12">
+          <ScrollReveal className="text-center max-w-[800px] mx-auto mb-16">
+            <span className="text-xs font-semibold uppercase tracking-wide text-[#6a00ff]">Our Team</span>
+            <CharacterScatter text="Meet Our Founders & Technical Leaders" className="text-[36px] md:text-[56px] font-semibold text-[#0d0520] leading-[1.1] tracking-[-0.02em] mt-4 font-['Plus_Jakarta_Sans']" as="h2" />
+            <p className="text-base md:text-lg text-[#53445f] mt-4 leading-relaxed">
+              We are a dedicated team of digital marketing, software development, and SEO experts committed to growing your business.
+            </p>
+          </ScrollReveal>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-16 max-w-[1080px] mx-auto">
+            {team.map((member, i) => (
+              <ScrollReveal key={member.name} delay={i * 0.15} y={50}>
+                <div className="bg-white rounded-[20px] overflow-hidden shadow-[0_4px_24px_rgba(13,5,32,0.06)] hover:shadow-[0_8px_40px_rgba(13,5,32,0.12)] hover:-translate-y-1 transition-all duration-300 group">
+                  <div className="aspect-[3/4] overflow-hidden bg-gradient-to-br from-[#6a00ff] to-[#3b0a75]">
+                    <img 
+                      src={member.image} 
+                      alt={member.name} 
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                      loading="lazy" 
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h4 className="text-xl font-bold text-[#0d0520] font-['Plus_Jakarta_Sans']">{member.name}</h4>
+                    <span className="text-xs font-extrabold text-[#6a00ff] uppercase tracking-wider block mt-1">{member.role}</span>
+                    <p className="text-sm text-[#53445f] mt-4 leading-relaxed">{member.bio}</p>
+                  </div>
+                </div>
               </ScrollReveal>
             ))}
           </div>

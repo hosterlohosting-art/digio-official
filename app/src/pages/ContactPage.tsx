@@ -5,7 +5,7 @@ import ScrollReveal from '../components/ScrollReveal';
 import Accordion from '../components/Accordion';
 import Button from '../components/Button';
 import SEO from '../components/SEO';
-import { Phone, Mail, MessageCircle, MapPin, Clock, PhoneCall, FileText, Linkedin, Instagram, Twitter, Facebook } from 'lucide-react';
+import { Phone, Mail, MessageCircle, MapPin, Clock, PhoneCall, FileText, Linkedin, Instagram, Facebook } from 'lucide-react';
 
 
 const faqItems = [
@@ -235,9 +235,7 @@ export default function ContactPage() {
                 <div className="bg-white rounded-[20px] shadow-[0_4px_24px_rgba(13,5,32,0.06)] p-8">
                   <h4 className="text-lg font-semibold text-[#0d0520] font-['Plus_Jakarta_Sans']">Office Location</h4>
                   <div className="mt-4 space-y-1 text-sm">
-                    <p className="text-[#0d0520] font-medium">1A North Rd</p>
-                    <p className="text-[#53445f]">Woking</p>
-                    <p className="text-[#53445f]">GU21 5DS</p>
+                    <p className="text-[#0d0520] font-medium">Woking & Romford</p>
                     <p className="text-[#53445f]">United Kingdom</p>
                   </div>
                   <div className="mt-4 aspect-video rounded-xl overflow-hidden bg-[#eee7ff]">
@@ -266,10 +264,9 @@ export default function ContactPage() {
                     <p className="text-xs text-[#7d718c] uppercase tracking-wider mb-3">Follow Us</p>
                     <div className="flex gap-4">
                       {[
-                        { Icon: Linkedin, href: 'https://linkedin.com/company/digioverse', label: 'LinkedIn' },
-                        { Icon: Instagram, href: 'https://instagram.com/digioverse', label: 'Instagram' },
-                        { Icon: Twitter, href: 'https://twitter.com/digioverse', label: 'Twitter' },
-                        { Icon: Facebook, href: 'https://facebook.com/digioverse', label: 'Facebook' },
+                        { Icon: Linkedin, href: 'https://www.linkedin.com/company/digioverse/', label: 'LinkedIn' },
+                        { Icon: Instagram, href: 'https://www.instagram.com/digioverse/', label: 'Instagram' },
+                        { Icon: Facebook, href: 'https://www.facebook.com/digioverse/', label: 'Facebook' },
                       ].map((social) => (
                         <a key={social.label} href={social.href} target="_blank" rel="noopener noreferrer" aria-label={social.label} className="text-[#7d718c] hover:text-[#6a00ff] transition-colors"><social.Icon className="w-5 h-5" /></a>
                       ))}

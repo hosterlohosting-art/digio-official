@@ -8,7 +8,7 @@ import CharacterScatter from '../components/CharacterScatter';
 const packages = [
   {
     name: 'Starter Website',
-    price: '£995',
+    price: '£499*',
     description: 'Best for new businesses and startups wanting a professional online presence.',
     features: [
       'Up to 5 custom-designed pages',
@@ -24,7 +24,7 @@ const packages = [
   },
   {
     name: 'Business Website',
-    price: '£2,495',
+    price: '£999',
     description: 'Best for growing companies needing advanced features and lead generation.',
     features: [
       'Up to 10 custom-designed pages',
@@ -41,7 +41,7 @@ const packages = [
   },
   {
     name: 'Premium Website',
-    price: '£4,995',
+    price: '£1,499',
     description: 'Best for established brands wanting an industry-leading high-end digital presence.',
     features: [
       'Bespoke, custom UI design system',
@@ -57,8 +57,8 @@ const packages = [
     popular: true,
   },
   {
-    name: 'Ecommerce Website',
-    price: '£3,995',
+    name: 'Ecommerce Store',
+    price: '£699',
     description: 'Best for online stores and product-focused brands ready to scale sales.',
     features: [
       'Complete Shopify or WooCommerce setup',
@@ -71,6 +71,21 @@ const packages = [
       'Standard discount & voucher systems',
     ],
     cta: 'Launch My Store',
+    popular: false,
+  },
+  {
+    name: 'Hosting & Domain',
+    price: 'Contact Us',
+    description: 'Hosting and domain setup with our free custom website builder.',
+    features: [
+      'Secure, high-speed cloud hosting',
+      'Custom domain registration (.com / .co.uk)',
+      'Free custom website builder access',
+      'Business email setup & configuration',
+      'Automated daily backups & security SSL',
+      'Ongoing technical support & updates',
+    ],
+    cta: 'Contact for Pricing',
     popular: false,
   },
   {
@@ -122,7 +137,7 @@ export default function PricingPage() {
       {/* Pricing Grid */}
       <section className="pb-16 bg-[#f7f7fa]">
         <div className="max-w-[1280px] mx-auto px-5 md:px-8 lg:px-12">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {packages.map((pkg, i) => (
               <ScrollReveal key={pkg.name} delay={i * 0.1}>
                 <div
@@ -171,7 +186,7 @@ export default function PricingPage() {
               </ScrollReveal>
             ))}
           </div>
-          <p className="text-xs text-[#7d718c] text-center mt-8">All prices exclude VAT. Transparent, clear quotes are discussed and finalized during our discovery calls.</p>
+          <p className="text-xs text-[#7d718c] text-center mt-8">All prices exclude VAT. *Starter price is subject to discovery call requirements. Transparent, clear quotes are discussed and finalized during our discovery calls.</p>
         </div>
       </section>
 
