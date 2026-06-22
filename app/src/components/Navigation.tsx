@@ -71,7 +71,7 @@ export default function Navigation() {
             <span className="sr-only">Digioverse</span>
           </Link>
 
-          <nav className="hidden lg:flex items-center gap-2 rounded-full bg-[#f7f7fa] border border-[#ddd0f4] px-2 py-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.85)]">
+          <nav className="hidden lg:flex items-center gap-1 rounded-full bg-[#f7f7fa] border border-[#ddd0f4] px-1.5 py-1.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.85)]">
             <div
               className="relative"
               onMouseEnter={() => setMegaOpen(true)}
@@ -79,10 +79,10 @@ export default function Navigation() {
             >
               <Link
                 to="/services"
-                className="text-[15px] font-extrabold text-[#2b094f] hover:text-[#6a00ff] relative group px-4 py-2"
+                className="text-xs font-extrabold text-[#2b094f] hover:text-[#6a00ff] relative group px-3.5 py-1.5"
               >
                 Services
-                <span className="absolute bottom-1 left-4 right-4 h-[2px] bg-[#6a00ff] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
+                <span className="absolute bottom-1 left-3.5 right-3.5 h-[2px] bg-[#6a00ff] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
               </Link>
 
               {megaOpen && (
@@ -115,34 +115,42 @@ export default function Navigation() {
               <Link
                 key={link.label}
                 to={link.href}
-                className="text-[15px] font-extrabold text-[#2b094f] hover:text-[#6a00ff] relative group px-4 py-2"
+                className="text-xs font-extrabold text-[#2b094f] hover:text-[#6a00ff] relative group px-3.5 py-1.5"
               >
                 {link.label}
-                <span className="absolute bottom-1 left-4 right-4 h-[2px] bg-[#6a00ff] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
+                <span className="absolute bottom-1 left-3.5 right-3.5 h-[2px] bg-[#6a00ff] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
               </Link>
             ))}
           </nav>
 
           <div className="flex items-center gap-3">
-            {/* Landline Call & WhatsApp Button */}
+            {/* Sleek circular WhatsApp link */}
             <a
               href="https://wa.me/442046155575"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden lg:inline-flex items-center gap-2 border border-[#ddd0f4] bg-white text-[#2b094f] hover:text-[#6a00ff] font-semibold text-sm px-5 py-3 rounded-full hover:-translate-y-0.5 transition-all duration-300 shadow-[0_4px_12px_rgba(13,5,32,0.02)]"
+              className="hidden lg:inline-flex items-center justify-center w-10.5 h-10.5 border border-[#ddd0f4] bg-white text-[#2b094f] hover:text-[#6a00ff] hover:border-[#6a00ff] rounded-full hover:-translate-y-0.5 transition-all duration-300 shadow-[0_4px_12px_rgba(13,5,32,0.02)]"
+              title="Chat on WhatsApp: 020 4615 5575"
             >
-              <Phone className="w-4 h-4 text-[#6a00ff]" />
-              <svg className="w-4 h-4 fill-[#25D366] shrink-0" viewBox="0 0 24 24">
+              <svg className="w-4.5 h-4.5 fill-[#25D366]" viewBox="0 0 24 24">
                 <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008 0c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.625 1.451 5.403.002 9.803-4.394 9.806-9.799.002-2.618-1.01-5.078-2.854-6.924C16.379 2.036 13.918 1.023 11.3 1.02c-5.41 0-9.81 4.396-9.813 9.801-.001 1.77.472 3.498 1.368 5.037L1.825 21.8l6.162-1.616-.34-.23zm8.995-5.918c-.287-.143-1.697-.838-1.959-.933-.261-.096-.452-.143-.642.143-.19.286-.736.933-.902 1.124-.167.19-.333.214-.62.071-.286-.143-1.21-.446-2.305-1.424-.853-.76-1.428-1.7-1.595-1.985-.167-.286-.018-.44.125-.581.129-.127.287-.333.43-.5.143-.167.19-.286.286-.476.096-.19.048-.357-.024-.5-.071-.143-.642-1.548-.88-2.12-.232-.558-.467-.482-.642-.491-.167-.008-.357-.01-.548-.01-.19 0-.5.071-.762.357-.262.286-1 .976-1 2.38 0 1.405 1.023 2.762 1.166 2.952.143.19 2.013 3.074 4.877 4.31.682.293 1.215.469 1.63.601.687.218 1.312.187 1.806.114.55-.082 1.697-.692 1.937-1.36.24-.668.24-1.24.167-1.36-.072-.12-.262-.19-.548-.332z" />
               </svg>
-              <span>020 4615 5575</span>
+            </a>
+            
+            {/* Sleek circular Phone link */}
+            <a
+              href="tel:+442046155575"
+              className="hidden lg:inline-flex items-center justify-center w-10.5 h-10.5 border border-[#ddd0f4] bg-white text-[#2b094f] hover:text-[#6a00ff] hover:border-[#6a00ff] rounded-full hover:-translate-y-0.5 transition-all duration-300 shadow-[0_4px_12px_rgba(13,5,32,0.02)]"
+              title="Call Landline: 020 4615 5575"
+            >
+              <Phone className="w-4 h-4 text-[#6a00ff]" />
             </a>
 
             <Link
               to="/book-appointment"
-              className="hidden md:inline-flex bg-[#6a00ff] text-white font-semibold text-sm px-7 py-3 rounded-full shadow-[0_14px_36px_rgba(106,0,255,0.28)] hover:bg-[#3b0a75] hover:-translate-y-0.5 transition-all duration-300"
+              className="hidden md:inline-flex bg-[#6a00ff] text-white font-bold text-xs px-5 py-3 rounded-full shadow-[0_14px_36px_rgba(106,0,255,0.28)] hover:bg-[#3b0a75] hover:-translate-y-0.5 transition-all duration-300"
             >
-              Book Free Appointment
+              Book Free Call
             </Link>
             <button
               onClick={() => setMobileOpen(true)}
