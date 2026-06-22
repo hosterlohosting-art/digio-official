@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Breadcrumb from '../components/Breadcrumb';
 import CharacterScatter from '../components/CharacterScatter';
@@ -6,15 +6,25 @@ import ScrollReveal from '../components/ScrollReveal';
 import Button from '../components/Button';
 import SEO from '../components/SEO';
 import { Calendar, Clock, Mail } from 'lucide-react';
-import { blogArticles } from '../data/blogArticles';
+import type { BlogArticle } from '../data/blogArticles';
+import { loadBlogs } from '../utils/blogLoader';
 
 const categories = ['All', 'Web Design', 'SEO', 'Google Ads', 'Meta Ads', 'Ecommerce', 'Business Automation', 'Hosting', 'SaaS', 'UK Business Growth'];
 
 
 export default function BlogPage() {
+  const [articles, setArticles] = useState<BlogArticle[]>([]);
+  const [loading, setLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState('All');
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [newsletterState, setNewsletterState] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+  useEffect(() => {
+    loadBlogs().then((data) => {
+      setArticles(data);
+      setLoading(false);
+    });
+  }, []);
 
   const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -57,10 +67,21 @@ export default function BlogPage() {
     }
   };
 
-  const featuredArticle = blogArticles[0];
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-[#f7f7fa] flex items-center justify-center pt-24 font-['Outfit']">
+        <div className="text-center">
+          <div className="w-10 h-10 rounded-full border-2 border-[#ddd0f4]/45 border-t-[#6a00ff] animate-spin mx-auto mb-4" />
+          <p className="text-sm text-[#7d718c] font-semibold">Loading insights...</p>
+        </div>
+      </div>
+    );
+  }
+
+  const featuredArticle = articles[0];
   const filtered = activeCategory === 'All'
-    ? blogArticles.filter((a) => a.slug !== featuredArticle.slug)
-    : blogArticles.filter((a) => a.category === activeCategory);
+    ? articles.filter((a) => featuredArticle && a.slug !== featuredArticle.slug)
+    : articles.filter((a) => a.category === activeCategory);
 
   return (
     <>

@@ -1,6 +1,7 @@
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
-import { blogArticles } from '../data/blogArticles';
+import type { BlogArticle } from '../data/blogArticles';
+import { loadBlogs } from '../utils/blogLoader';
 import SEO from '../components/SEO';
 import Breadcrumb from '../components/Breadcrumb';
 import ScrollReveal from '../components/ScrollReveal';
@@ -22,16 +23,24 @@ export default function BlogDetailPage() {
   });
   const [formState, setFormState] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
-  // Find article
-  const article = blogArticles.find((a) => a.slug === slug);
-  if (!article) {
-    return <Navigate to="/blog" replace />;
-  }
+  // Dynamic article loading state
+  const [article, setArticle] = useState<BlogArticle | null>(null);
+  const [loading, setLoading] = useState(true);
 
   // Ref list for headings to handle dynamic TOC activation
   const headingRefs = useRef<{ [key: string]: HTMLHeadingElement | null }>({});
 
   useEffect(() => {
+    loadBlogs().then((data) => {
+      const found = data.find((a) => a.slug === slug);
+      setArticle(found || null);
+      setLoading(false);
+    });
+  }, [slug]);
+
+  useEffect(() => {
+    if (!article) return;
+
     const handleScroll = () => {
       // Progress bar calculation
       const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -58,6 +67,21 @@ export default function BlogDetailPage() {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, [article]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-[#f7f7fa] flex items-center justify-center pt-24 font-['Outfit']">
+        <div className="text-center">
+          <div className="w-10 h-10 rounded-full border-2 border-[#ddd0f4]/45 border-t-[#6a00ff] animate-spin mx-auto mb-4" />
+          <p className="text-sm text-[#7d718c] font-semibold">Loading article...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!article) {
+    return <Navigate to="/blog" replace />;
+  }
 
   const handleShare = async () => {
     const url = window.location.href;

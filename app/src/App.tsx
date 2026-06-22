@@ -24,6 +24,7 @@ const UKLandingPage = lazy(() => import('./pages/UKLandingPage'));
 const USALandingPage = lazy(() => import('./pages/USALandingPage'));
 const WokingLocationPage = lazy(() => import('./pages/WokingLocationPage'));
 const SurreyLocationPage = lazy(() => import('./pages/SurreyLocationPage'));
+const AdminPage = lazy(() => import('./pages/AdminPage'));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -111,6 +112,7 @@ export default function App() {
             <Route path="/work" element={<WorkPage />} />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/blog/:slug" element={<BlogDetailPage />} />
+            <Route path="/admin" element={<AdminPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/privacy" element={<LegalPage type="privacy" />} />
             <Route path="/terms" element={<LegalPage type="terms" />} />
