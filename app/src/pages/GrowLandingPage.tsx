@@ -1,0 +1,764 @@
+import React, { useState } from 'react';
+import SEO from '../components/SEO';
+import { 
+  Phone, CheckCircle, Server, Search, Target, 
+  ChevronDown, ChevronUp, Star, Check, Laptop, MessageSquare
+} from 'lucide-react';
+import ScrollReveal from '../components/ScrollReveal';
+
+// Custom Accordion Component for landing page FAQs
+function AccordionItem({ question, answer, isOpen, onClick }: { question: string; answer: string; isOpen: boolean; onClick: () => void }) {
+  return (
+    <div className="border-b border-[#ddd0f4]/60 py-4">
+      <button
+        type="button"
+        onClick={onClick}
+        className="w-full flex justify-between items-center text-left py-2 text-[#0d0520] hover:text-[#6a00ff] font-semibold text-base font-['Plus_Jakarta_Sans'] transition-colors"
+      >
+        <span>{question}</span>
+        {isOpen ? <ChevronUp className="w-5 h-5 text-[#6a00ff] shrink-0" /> : <ChevronDown className="w-5 h-5 text-[#7d718c] shrink-0" />}
+      </button>
+      <div 
+        className={`overflow-hidden transition-all duration-300 ${
+          isOpen ? 'max-h-[250px] opacity-100 mt-2' : 'max-h-0 opacity-0'
+        }`}
+      >
+        <p className="text-sm text-[#53445f] leading-relaxed font-['Outfit'] pr-8 pb-2">
+          {answer}
+        </p>
+      </div>
+    </div>
+  );
+}
+
+export default function GrowLandingPage() {
+  // Form submission states
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    package: 'Business Growth (£999)',
+    message: '',
+    website: '', // Honeypot
+  });
+  const [formState, setFormState] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [activeFAQ, setActiveFAQ] = useState<number | null>(0);
+
+  const handleFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setFormState('loading');
+
+    // Honeypot check
+    if (formData.website) {
+      setTimeout(() => {
+        setFormState('success');
+        setFormData({ name: '', email: '', phone: '', package: 'Business Growth (£999)', message: '', website: '' });
+      }, 800);
+      return;
+    }
+
+    try {
+      const payload = {
+        _subject: `PPC Lead: ${formData.package} - ${formData.name}`,
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        package: formData.package,
+        message: formData.message || 'No additional comments.',
+      };
+
+      const promise1 = fetch('https://formsubmit.co/ajax/thedigioverse@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const promise2 = fetch('https://formsubmit.co/ajax/digioverseuk@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const [res1, res2] = await Promise.all([promise1, promise2]);
+
+      if (!res1.ok && !res2.ok) {
+        throw new Error('Lead submission failed');
+      }
+
+      setFormState('success');
+      setFormData({ name: '', email: '', phone: '', package: 'Business Growth (£999)', message: '', website: '' });
+    } catch (err) {
+      console.error(err);
+      setFormState('error');
+    }
+  };
+
+  const scrollToForm = () => {
+    const el = document.getElementById('lead-capture-form');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const faqs = [
+    {
+      q: 'What is included in the £499 Starter Website package?',
+      a: 'This includes a premium brochure website (3-5 pages), custom design tailored to your branding, 1 year of free domain registration (.co.uk or .com), 1 year of secure SSL and high-speed hosting, and up to 3 professional business email accounts.'
+    },
+    {
+      q: 'How long does it take to design and launch the website?',
+      a: 'For our Starter and E-commerce packages, average delivery time is 2 to 3 weeks. For custom Business Growth platforms, it takes between 3 to 5 weeks depending on database integrations, CRM setups, and customized assets.'
+    },
+    {
+      q: 'Do I own the website, domain, and hosting accounts?',
+      a: 'Yes, 100%. Once project payment is complete, you own all design files, source code, domain names, and database entries. We can manage them for you on our cloud nodes or transfer them to your own host.'
+    },
+    {
+      q: 'Who manages the Google Ads budget?',
+      a: 'You pay Google directly for your ad clicks. We handle the technical campaign setup (negative keywords, ad copies, tracking tags, and bidding structures) under our flat service packages, ensuring you do not waste money.'
+    },
+    {
+      q: 'What SEO setup is included in the package?',
+      a: 'All packages include critical on-page SEO: custom metadata titles, meta descriptions, image alt tags, responsive page speeds, sitemaps, and indexing on Google and Bing search consoles. The Business Growth package adds Google Business Profile optimization and location page structures.'
+    }
+  ];
+
+  return (
+    <>
+      <SEO
+        title="Web Design & Google Ads for UK Businesses | Digioverse"
+        description="Get a high-converting website, domain, fast hosting, business emails, and Google Ads setup from scratch. Fixed transparent pricing packages built to generate leads."
+        keywords="web design agency uk, google ads marketing, custom website development, small business leads, domain hosting packages"
+      />
+
+      {/* Simplified PPC Header */}
+      <nav className="fixed top-0 left-0 w-full bg-[#f7f7fa]/85 backdrop-blur-[12px] border-b border-[#ddd0f4]/45 z-[1000] py-4 transition-all">
+        <div className="max-w-[1280px] mx-auto px-5 md:px-8 lg:px-12 flex items-center justify-between">
+          <a href="/" className="flex items-center gap-2 group">
+            <div className="w-9 h-9 bg-gradient-to-br from-[#6a00ff] to-[#3b0a75] rounded-xl flex items-center justify-center shadow-[0_4px_12px_rgba(106,0,255,0.2)]">
+              <span className="text-white font-extrabold text-lg font-['Plus_Jakarta_Sans']">D</span>
+            </div>
+            <span className="text-[#0d0520] font-extrabold text-xl tracking-tight font-['Plus_Jakarta_Sans']">
+              Digioverse
+            </span>
+          </a>
+
+          <div className="flex items-center gap-4">
+            <a 
+              href="tel:+442046155575" 
+              className="hidden sm:flex items-center gap-2 text-sm font-bold text-[#0d0520] hover:text-[#6a00ff] transition-colors"
+            >
+              <Phone className="w-4 h-4 text-[#6a00ff]" /> +44 2046 155575
+            </a>
+            <button
+              onClick={scrollToForm}
+              className="bg-[#6a00ff] hover:bg-[#3b0a75] text-white text-xs font-bold py-2.5 px-4 rounded-xl transition-all shadow-[0_4px_12px_rgba(106,0,255,0.15)]"
+            >
+              Get Free Proposal
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section with Form Above-the-Fold */}
+      <section className="bg-gradient-to-b from-[#f7f7fa] to-[#eee7ff] pt-32 pb-16 md:pt-40 md:pb-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(106,0,255,0.05),transparent_40%)] pointer-events-none" />
+        
+        <div className="max-w-[1280px] mx-auto px-5 md:px-8 lg:px-12 relative z-10">
+          <div className="grid lg:grid-cols-[55%_40%] gap-12 items-center">
+            
+            {/* Left: Value Proposition */}
+            <div>
+              <span className="text-xs font-bold text-[#6a00ff] uppercase tracking-wider bg-[rgba(106,0,255,0.08)] px-4 py-1.5 rounded-full inline-block mb-5">
+                All-In-One Business Growth Platform
+              </span>
+              <h1 className="text-[36px] sm:text-[46px] md:text-[56px] font-bold text-[#0d0520] leading-[1.1] tracking-[-0.03em] font-['Plus_Jakarta_Sans']">
+                We Build Websites & Ads That Turn Visitors Into Customers
+              </h1>
+              <p className="text-base md:text-lg text-[#53445f] mt-6 leading-relaxed font-['Outfit']">
+                Stop wasting budget on traffic that doesn't convert. We design lightning-fast sites, register your domain, set up hosting & professional emails, and launch high-ROI Google Ads campaigns—all from scratch.
+              </p>
+
+              <div className="mt-8 space-y-4">
+                <div className="flex items-start gap-3">
+                  <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center mt-0.5 shrink-0">
+                    <Check className="w-3.5 h-3.5 text-green-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-[#0d0520] text-sm">Fully Custom Website Design</h4>
+                    <p className="text-xs text-[#7d718c]">Mobile-first layouts designed to capture UK customer intent.</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center mt-0.5 shrink-0">
+                    <Check className="w-3.5 h-3.5 text-green-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-[#0d0520] text-sm">Domain, Cloud Hosting & Business Emails</h4>
+                    <p className="text-xs text-[#7d718c]">Everything set up and configured. No technical headache for you.</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center mt-0.5 shrink-0">
+                    <Check className="w-3.5 h-3.5 text-green-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-[#0d0520] text-sm">Active Google Ads Setup & Optimization</h4>
+                    <p className="text-xs text-[#7d718c]">Instant visibility: placing you on page one when people are searching.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Trust badges */}
+              <div className="flex items-center gap-6 mt-10 border-t border-[#ddd0f4]/60 pt-6">
+                <div className="flex -space-x-2">
+                  <div className="w-8 h-8 rounded-full bg-[#6a00ff] text-white flex items-center justify-center text-[10px] font-bold border border-white">M</div>
+                  <div className="w-8 h-8 rounded-full bg-[#3b0a75] text-white flex items-center justify-center text-[10px] font-bold border border-white">A</div>
+                  <div className="w-8 h-8 rounded-full bg-purple-600 text-white flex items-center justify-center text-[10px] font-bold border border-white">S</div>
+                </div>
+                <div>
+                  <div className="flex items-center gap-0.5">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                    ))}
+                  </div>
+                  <span className="text-xs text-[#7d718c] font-semibold">Loved by 30+ UK Business Owners</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Right: Teaser Lead Capture Form */}
+            <div className="bg-white border border-[#ddd0f4]/60 rounded-3xl p-6 md:p-8 shadow-[0_12px_40px_rgba(13,5,32,0.06)]">
+              <h3 className="text-xl font-bold text-[#0d0520] font-['Plus_Jakarta_Sans']">Request a Free Proposal</h3>
+              <p className="text-xs text-[#7d718c] mt-1.5">No obligation. Let us show you how we can drive sales.</p>
+
+              {formState === 'success' ? (
+                <div className="mt-6 text-center bg-green-50 rounded-2xl p-6 border border-green-200 animate-[fadeIn_0.3s_ease]">
+                  <CheckCircle className="w-12 h-12 text-green-600 mx-auto mb-3" />
+                  <h4 className="font-bold text-[#0d0520] text-base">Request Received!</h4>
+                  <p className="text-xs text-[#53445f] mt-1.5">We will analyze your business and contact you with a customized blueprint within 24 hours.</p>
+                </div>
+              ) : (
+                <form onSubmit={handleFormSubmit} className="mt-6 space-y-4">
+                  {/* Honeypot field */}
+                  <div className="hidden">
+                    <input 
+                      type="text" 
+                      name="website" 
+                      value={formData.website} 
+                      onChange={(e) => setFormData({ ...formData, website: e.target.value })} 
+                      placeholder="Website" 
+                      tabIndex={-1} 
+                      autoComplete="off" 
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-[10px] font-bold text-[#2b094f] uppercase tracking-wider mb-1">Your Name *</label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="John Doe"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="w-full bg-[#f7f7fa] border border-[#ddd0f4] rounded-xl px-4 py-2.5 text-xs text-[#0d0520] focus:border-[#6a00ff] focus:bg-white transition-all outline-none font-medium"
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-[10px] font-bold text-[#2b094f] uppercase tracking-wider mb-1">Email Address *</label>
+                      <input
+                        type="email"
+                        required
+                        placeholder="john@company.com"
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        className="w-full bg-[#f7f7fa] border border-[#ddd0f4] rounded-xl px-4 py-2.5 text-xs text-[#0d0520] focus:border-[#6a00ff] focus:bg-white transition-all outline-none font-medium"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-[10px] font-bold text-[#2b094f] uppercase tracking-wider mb-1">Phone Number *</label>
+                      <input
+                        type="tel"
+                        required
+                        placeholder="07123 456789"
+                        value={formData.phone}
+                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                        className="w-full bg-[#f7f7fa] border border-[#ddd0f4] rounded-xl px-4 py-2.5 text-xs text-[#0d0520] focus:border-[#6a00ff] focus:bg-white transition-all outline-none font-medium"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-[10px] font-bold text-[#2b094f] uppercase tracking-wider mb-1">Select Growth Package *</label>
+                    <select
+                      value={formData.package}
+                      onChange={(e) => setFormData({ ...formData, package: e.target.value })}
+                      className="w-full bg-[#f7f7fa] border border-[#ddd0f4] rounded-xl px-4 py-2.5 text-xs text-[#0d0520] focus:border-[#6a00ff] focus:bg-white transition-all outline-none font-medium"
+                    >
+                      <option value="Starter Launch (£499)">Starter Launch (£499)</option>
+                      <option value="Business Growth (£999)">Business Growth (£999)</option>
+                      <option value="Ecommerce Store (£699)">Ecommerce Store (£699)</option>
+                      <option value="Custom Enterprise Solution">Custom Enterprise Solution</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-[10px] font-bold text-[#2b094f] uppercase tracking-wider mb-1">Project Details (Optional)</label>
+                    <textarea
+                      placeholder="Tell us about your company and what you want to achieve..."
+                      rows={3}
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      className="w-full bg-[#f7f7fa] border border-[#ddd0f4] rounded-xl p-3.5 text-xs text-[#0d0520] focus:border-[#6a00ff] focus:bg-white transition-all outline-none font-medium resize-none"
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={formState === 'loading'}
+                    className="w-full bg-[#6a00ff] hover:bg-[#3b0a75] text-white text-xs font-bold py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 transition-all duration-300 shadow-[0_6px_16px_rgba(106,0,255,0.2)]"
+                  >
+                    {formState === 'loading' ? 'Submitting Details...' : 'Get Free Strategy Plan'}
+                  </button>
+
+                  {formState === 'error' && (
+                    <p className="text-red-500 text-[10px] text-center font-semibold mt-1">
+                      Failed to submit. Please check your connection and retry.
+                    </p>
+                  )}
+                </form>
+              )}
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* 3-Step Process Framework */}
+      <section className="bg-white py-16 md:py-24 border-b border-[#ddd0f4]/50">
+        <div className="max-w-[1280px] mx-auto px-5 md:px-8 lg:px-12">
+          <div className="max-w-[600px] mx-auto text-center mb-16">
+            <span className="text-xs font-bold text-[#6a00ff] uppercase tracking-wider">How we do it</span>
+            <h2 className="text-3xl md:text-[40px] font-bold text-[#0d0520] mt-3 font-['Plus_Jakarta_Sans']">
+              Our 3-Step Growth Framework
+            </h2>
+            <p className="text-sm text-[#53445f] mt-3 font-['Outfit']">
+              We manage the entire system so you can focus on running your business. Here is how we get you up and running:
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <ScrollReveal className="bg-[#f7f7fa] border border-[#ddd0f4]/35 p-8 rounded-3xl relative h-full">
+              <span className="text-5xl font-extrabold text-[#ddd0f4]/50 font-['Plus_Jakarta_Sans'] block mb-4">01</span>
+              <h3 className="text-lg font-bold text-[#0d0520] font-['Plus_Jakarta_Sans']">Free Strategy Session</h3>
+              <p className="text-xs text-[#53445f] mt-3 leading-relaxed font-['Outfit']">
+                We study your local market, identify high-intent keywords that customers type when looking for your service, and map out a structured action plan.
+              </p>
+            </ScrollReveal>
+
+            <ScrollReveal delay={0.1} className="bg-[#f7f7fa] border border-[#ddd0f4]/35 p-8 rounded-3xl relative h-full">
+              <span className="text-5xl font-extrabold text-[#ddd0f4]/50 font-['Plus_Jakarta_Sans'] block mb-4">02</span>
+              <h3 className="text-lg font-bold text-[#0d0520] font-['Plus_Jakarta_Sans']">Asset Development</h3>
+              <p className="text-xs text-[#53445f] mt-3 leading-relaxed font-['Outfit']">
+                We custom build your high-converting website from scratch, register your domain, hook up premium hosting, configure emails, and integrate lead forms.
+              </p>
+            </ScrollReveal>
+
+            <ScrollReveal delay={0.2} className="bg-[#f7f7fa] border border-[#ddd0f4]/35 p-8 rounded-3xl relative h-full">
+              <span className="text-5xl font-extrabold text-[#ddd0f4]/50 font-['Plus_Jakarta_Sans'] block mb-4">03</span>
+              <h3 className="text-lg font-bold text-[#0d0520] font-['Plus_Jakarta_Sans']">Campaign Launch</h3>
+              <p className="text-xs text-[#53445f] mt-3 leading-relaxed font-['Outfit']">
+                We launch optimized Google Ads campaigns targeting searchers with active intent, routing phone calls and leads directly to your inbox.
+              </p>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Breakdown */}
+      <section className="bg-[#f7f7fa] py-16 md:py-24">
+        <div className="max-w-[1280px] mx-auto px-5 md:px-8 lg:px-12">
+          
+          <div className="grid lg:grid-cols-[40%_55%] gap-12 items-center">
+            <div>
+              <span className="text-xs font-bold text-[#6a00ff] uppercase tracking-wider">Comprehensive Solutions</span>
+              <h2 className="text-3xl md:text-[40px] font-bold text-[#0d0520] mt-3 font-['Plus_Jakarta_Sans']">
+                Everything Handled From Scratch. No Stress.
+              </h2>
+              <p className="text-sm text-[#53445f] mt-4 leading-relaxed font-['Outfit']">
+                Unlike freelancers who only design or agencies who only run ads, we build and manage the entire lead acquisition flow. You get a single team managing your online presence.
+              </p>
+              
+              <div className="mt-8 flex gap-4">
+                <button 
+                  onClick={scrollToForm}
+                  className="bg-[#0d0520] hover:bg-[#6a00ff] text-white text-xs font-bold py-3 px-6 rounded-xl transition-all"
+                >
+                  Request Call Back
+                </button>
+                <a 
+                  href="https://wa.me/442046155575" 
+                  target="_blank" 
+                  rel="noreferrer" 
+                  className="border border-[#ddd0f4] hover:border-[#6a00ff] bg-white text-xs font-bold py-3 px-6 rounded-xl flex items-center gap-1.5 text-[#53445f] hover:text-[#6a00ff] transition-all"
+                >
+                  Chat on WhatsApp
+                </a>
+              </div>
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-6">
+              <div className="bg-white border border-[#ddd0f4]/45 p-6 rounded-2xl shadow-[0_4px_20px_rgba(13,5,32,0.01)]">
+                <div className="w-10 h-10 rounded-xl bg-purple-100 flex items-center justify-center text-[#6a00ff] mb-4">
+                  <Laptop className="w-5 h-5" />
+                </div>
+                <h4 className="font-bold text-[#0d0520] text-sm">Premium Web Design</h4>
+                <p className="text-xs text-[#7d718c] mt-2 leading-relaxed">
+                  Stunning, responsive interfaces designed specifically to prompt contact and book services.
+                </p>
+              </div>
+
+              <div className="bg-white border border-[#ddd0f4]/45 p-6 rounded-2xl shadow-[0_4px_20px_rgba(13,5,32,0.01)]">
+                <div className="w-10 h-10 rounded-xl bg-purple-100 flex items-center justify-center text-[#6a00ff] mb-4">
+                  <Server className="w-5 h-5" />
+                </div>
+                <h4 className="font-bold text-[#0d0520] text-sm">Domain & Hosting</h4>
+                <p className="text-xs text-[#7d718c] mt-2 leading-relaxed">
+                  We purchase domain names, configure secure SSL, and set up cloud nodes with high-speed delivery.
+                </p>
+              </div>
+
+              <div className="bg-white border border-[#ddd0f4]/45 p-6 rounded-2xl shadow-[0_4px_20px_rgba(13,5,32,0.01)]">
+                <div className="w-10 h-10 rounded-xl bg-purple-100 flex items-center justify-center text-[#6a00ff] mb-4">
+                  <Search className="w-5 h-5" />
+                </div>
+                <h4 className="font-bold text-[#0d0520] text-sm">Google Local SEO</h4>
+                <p className="text-xs text-[#7d718c] mt-2 leading-relaxed">
+                  On-page structuring, metadata optimizations, sitemaps, and Google Business Profile setup.
+                </p>
+              </div>
+
+              <div className="bg-white border border-[#ddd0f4]/45 p-6 rounded-2xl shadow-[0_4px_20px_rgba(13,5,32,0.01)]">
+                <div className="w-10 h-10 rounded-xl bg-purple-100 flex items-center justify-center text-[#6a00ff] mb-4">
+                  <Target className="w-5 h-5" />
+                </div>
+                <h4 className="font-bold text-[#0d0520] text-sm">Google Ads Campaigns</h4>
+                <p className="text-xs text-[#7d718c] mt-2 leading-relaxed">
+                  Keyword bidding, localized targeting, writing high-click copy, and configuring call extensions.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* Pricing Packages */}
+      <section className="bg-white py-16 md:py-24 border-t border-[#ddd0f4]/40">
+        <div className="max-w-[1280px] mx-auto px-5 md:px-8 lg:px-12">
+          
+          <div className="max-w-[600px] mx-auto text-center mb-16">
+            <span className="text-xs font-bold text-[#6a00ff] uppercase tracking-wider">Clear Fixed Pricing</span>
+            <h2 className="text-3xl md:text-[40px] font-bold text-[#0d0520] mt-3 font-['Plus_Jakarta_Sans']">
+              Simple Growth Packages
+            </h2>
+            <p className="text-sm text-[#53445f] mt-3 font-['Outfit']">
+              Pick the tier that fits your company size. Absolutely no hidden fees.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Package 1 */}
+            <ScrollReveal className="bg-[#f7f7fa] border border-[#ddd0f4]/55 rounded-3xl p-8 flex flex-col justify-between h-full">
+              <div>
+                <span className="text-xs font-bold uppercase tracking-wider text-[#6a00ff] bg-purple-100 px-3 py-1 rounded-full">
+                  Startup Launch
+                </span>
+                <div className="mt-5">
+                  <span className="text-4xl font-extrabold text-[#0d0520] font-['Plus_Jakarta_Sans']">£499</span>
+                  <span className="text-xs text-[#7d718c] font-medium ml-1">fixed price</span>
+                </div>
+                <p className="text-xs text-[#53445f] mt-3 leading-relaxed font-['Outfit']">
+                  Perfect brochure setup for local trades, consultants, and new startups.
+                </p>
+                <div className="border-t border-[#ddd0f4]/50 my-6" />
+                <ul className="space-y-3.5 text-xs text-[#53445f]">
+                  <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-600 shrink-0" /> Custom Website Design (3-5 pages)</li>
+                  <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-600 shrink-0" /> Free Domain Name (.co.uk or .com)</li>
+                  <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-600 shrink-0" /> Secure Cloud Hosting & SSL (1 Year)</li>
+                  <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-600 shrink-0" /> 3 Professional Business Emails</li>
+                  <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-600 shrink-0" /> Direct Response Lead Capture Form</li>
+                </ul>
+              </div>
+              <button onClick={scrollToForm} className="w-full mt-8 py-3 bg-[#0d0520] hover:bg-[#6a00ff] text-white text-xs font-bold rounded-xl transition-all">
+                Select Startup Launch
+              </button>
+            </ScrollReveal>
+
+            {/* Package 2 */}
+            <ScrollReveal delay={0.1} className="bg-white border-2 border-[#6a00ff] rounded-3xl p-8 flex flex-col justify-between h-full relative shadow-[0_12px_40px_rgba(106,0,255,0.06)]">
+              <span className="absolute top-0 right-8 -translate-y-1/2 bg-[#6a00ff] text-white text-[10px] font-bold uppercase tracking-wider px-3.5 py-1 rounded-full">
+                Most Popular
+              </span>
+              <div>
+                <span className="text-xs font-bold uppercase tracking-wider text-white bg-[#6a00ff] px-3 py-1 rounded-full">
+                  Business Growth
+                </span>
+                <div className="mt-5">
+                  <span className="text-4xl font-extrabold text-[#0d0520] font-['Plus_Jakarta_Sans']">£999</span>
+                  <span className="text-xs text-[#7d718c] font-medium ml-1">fixed price</span>
+                </div>
+                <p className="text-xs text-[#53445f] mt-3 leading-relaxed font-['Outfit']">
+                  For businesses ready to actively gain market share and search leads in the UK.
+                </p>
+                <div className="border-t border-[#ddd0f4]/50 my-6" />
+                <ul className="space-y-3.5 text-xs text-[#53445f]">
+                  <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-600 shrink-0" /> Complete Website Platform (10-25 pages)</li>
+                  <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-600 shrink-0" /> Local SEO & GBP Setup (Woking/Surrey/London)</li>
+                  <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-600 shrink-0" /> 1 Year Hosting, Domain & Emails</li>
+                  <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-600 shrink-0" /> Google Ads PPC Campaign Setup</li>
+                  <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-600 shrink-0" /> Lead tracking & CRM Integration</li>
+                </ul>
+              </div>
+              <button onClick={scrollToForm} className="w-full mt-8 py-3 bg-[#6a00ff] hover:bg-[#3b0a75] text-white text-xs font-bold rounded-xl transition-all shadow-[0_6px_16px_rgba(106,0,255,0.15)]">
+                Select Business Growth
+              </button>
+            </ScrollReveal>
+
+            {/* Package 3 */}
+            <ScrollReveal delay={0.2} className="bg-[#f7f7fa] border border-[#ddd0f4]/55 rounded-3xl p-8 flex flex-col justify-between h-full">
+              <div>
+                <span className="text-xs font-bold uppercase tracking-wider text-[#6a00ff] bg-purple-100 px-3 py-1 rounded-full">
+                  Ecommerce Store
+                </span>
+                <div className="mt-5">
+                  <span className="text-4xl font-extrabold text-[#0d0520] font-['Plus_Jakarta_Sans']">£699</span>
+                  <span className="text-xs text-[#7d718c] font-medium ml-1">fixed price</span>
+                </div>
+                <p className="text-xs text-[#53445f] mt-3 leading-relaxed font-['Outfit']">
+                  Complete online retail shop with inventory management.
+                </p>
+                <div className="border-t border-[#ddd0f4]/50 my-6" />
+                <ul className="space-y-3.5 text-xs text-[#53445f]">
+                  <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-600 shrink-0" /> Custom Shop Design & Product Pages</li>
+                  <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-600 shrink-0" /> Payment Gateway Integration (Stripe/Paypal)</li>
+                  <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-600 shrink-0" /> Domain, SSL & Dedicated Hosting (1 Year)</li>
+                  <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-600 shrink-0" /> Branded emails & Order Automations</li>
+                  <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-600 shrink-0" /> Stock tracking & Discount structures</li>
+                </ul>
+              </div>
+              <button onClick={scrollToForm} className="w-full mt-8 py-3 bg-[#0d0520] hover:bg-[#6a00ff] text-white text-xs font-bold rounded-xl transition-all">
+                Select Ecommerce Store
+              </button>
+            </ScrollReveal>
+          </div>
+
+          <p className="text-[10px] text-center text-[#7d718c] mt-10">
+            * Starter footers include standard license support. Pricing excludes Google Ads advertising budget click payments.
+          </p>
+        </div>
+      </section>
+
+      {/* Trust & Testimonial Section */}
+      <section className="bg-[#f7f7fa] py-16 md:py-24">
+        <div className="max-w-[1280px] mx-auto px-5 md:px-8 lg:px-12">
+          
+          <div className="grid lg:grid-cols-[35%_60%] gap-12 items-center">
+            <div>
+              <span className="text-xs font-bold text-[#6a00ff] uppercase tracking-wider">Client Reviews</span>
+              <h2 className="text-3xl md:text-[40px] font-bold text-[#0d0520] mt-3 font-['Plus_Jakarta_Sans']">
+                What UK Business Owners Say
+              </h2>
+              <p className="text-sm text-[#53445f] mt-3 leading-relaxed font-['Outfit']">
+                Our custom designs and target ads campaign configurations help local firms increase call rates and email leads within weeks of launch.
+              </p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-6">
+              <ScrollReveal className="bg-white border border-[#ddd0f4]/45 p-6 rounded-2xl shadow-[0_4px_20px_rgba(13,5,32,0.01)]">
+                <div className="flex items-center gap-0.5 mb-3">
+                  {[...Array(5)].map((_, i) => <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />)}
+                </div>
+                <p className="text-xs text-[#53445f] italic leading-relaxed font-['Outfit']">
+                  "Digioverse built our construction website and set up Google Ads. The calls started landing the second week of launch. Extremely transparent guys to work with."
+                </p>
+                <div className="mt-4 flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-purple-100 text-[#6a00ff] flex items-center justify-center font-bold text-xs">TC</div>
+                  <div>
+                    <h5 className="font-bold text-xs text-[#0d0520]">Thomas C.</h5>
+                    <span className="text-[9px] text-[#7d718c]">Carpentry Director, Surrey</span>
+                  </div>
+                </div>
+              </ScrollReveal>
+
+              <ScrollReveal delay={0.1} className="bg-white border border-[#ddd0f4]/45 p-6 rounded-2xl shadow-[0_4px_20px_rgba(13,5,32,0.01)]">
+                <div className="flex items-center gap-0.5 mb-3">
+                  {[...Array(5)].map((_, i) => <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />)}
+                </div>
+                <p className="text-xs text-[#53445f] italic leading-relaxed font-['Outfit']">
+                  "They handled everything from the domain registration and email set up to design and local SEO. The site looks stunning and loads instantly on mobiles."
+                </p>
+                <div className="mt-4 flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-purple-100 text-[#6a00ff] flex items-center justify-center font-bold text-xs">SM</div>
+                  <div>
+                    <h5 className="font-bold text-xs text-[#0d0520]">Sarah M.</h5>
+                    <span className="text-[9px] text-[#7d718c]">Clinic Owner, Woking</span>
+                  </div>
+                </div>
+              </ScrollReveal>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* FAQ Accordion Section */}
+      <section className="bg-white py-16 md:py-24 border-t border-[#ddd0f4]/40">
+        <div className="max-w-[800px] mx-auto px-5">
+          <div className="text-center mb-12">
+            <span className="text-xs font-bold text-[#6a00ff] uppercase tracking-wider">Frequently Asked Questions</span>
+            <h2 className="text-3xl font-bold text-[#0d0520] mt-3 font-['Plus_Jakarta_Sans']">
+              Got Questions? We Have Answers.
+            </h2>
+          </div>
+
+          <div className="space-y-2">
+            {faqs.map((faq, index) => (
+              <AccordionItem
+                key={index}
+                question={faq.q}
+                answer={faq.a}
+                isOpen={activeFAQ === index}
+                onClick={() => setActiveFAQ(activeFAQ === index ? null : index)}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Bottom Lead capture anchor */}
+      <section id="lead-capture-form" className="bg-[#0d0520] py-16 md:py-20 relative overflow-hidden">
+        <div className="absolute top-[-20%] left-[-10%] w-[40%] h-[40%] bg-[#6a00ff]/10 rounded-full blur-[100px]" />
+        
+        <div className="max-w-[640px] mx-auto px-5 text-center relative z-10">
+          <MessageSquare className="w-12 h-12 text-[#6a00ff] mx-auto" />
+          <h2 className="text-3xl md:text-4xl font-bold text-white mt-6 font-['Plus_Jakarta_Sans']">
+            Ready to Dominate Your Local UK Market?
+          </h2>
+          <p className="text-xs text-[#c7a7ff] mt-3 leading-relaxed max-w-[480px] mx-auto">
+            Give us 24 hours. Enter your contact details, and our growth specialists will construct a personalized website blueprint & target keyword list for your business.
+          </p>
+
+          {formState === 'success' ? (
+            <div className="mt-8 text-center bg-white/5 rounded-2xl p-8 border border-white/10 animate-[fadeIn_0.3s_ease]">
+              <CheckCircle className="w-12 h-12 text-[#6a00ff] mx-auto mb-3" />
+              <h4 className="font-bold text-white text-base">Strategy Request Submitted!</h4>
+              <p className="text-xs text-[#c7a7ff] mt-2">We will get in touch with you shortly.</p>
+            </div>
+          ) : (
+            <form onSubmit={handleFormSubmit} className="mt-8 space-y-4 text-left bg-white/5 border border-white/10 p-6 sm:p-8 rounded-3xl backdrop-blur-md">
+              {/* Honeypot */}
+              <div className="hidden">
+                <input 
+                  type="text" 
+                  name="website" 
+                  value={formData.website} 
+                  onChange={(e) => setFormData({ ...formData, website: e.target.value })} 
+                  placeholder="Website" 
+                  tabIndex={-1} 
+                  autoComplete="off" 
+                />
+              </div>
+
+              <div>
+                <label className="block text-[10px] font-bold text-[#c7a7ff] uppercase tracking-wider mb-1">Company & Owner Name *</label>
+                <input
+                  type="text"
+                  required
+                  placeholder="Your Name & Business"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white placeholder:text-white/20 focus:border-[#6a00ff] focus:bg-white/10 transition-all outline-none"
+                />
+              </div>
+
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-[10px] font-bold text-[#c7a7ff] uppercase tracking-wider mb-1">Email Address *</label>
+                  <input
+                    type="email"
+                    required
+                    placeholder="name@company.co.uk"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white placeholder:text-white/20 focus:border-[#6a00ff] focus:bg-white/10 transition-all outline-none"
+                  />
+                </div>
+                <div>
+                  <label className="block text-[10px] font-bold text-[#c7a7ff] uppercase tracking-wider mb-1">Contact Phone *</label>
+                  <input
+                    type="tel"
+                    required
+                    placeholder="07123 456789"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white placeholder:text-white/20 focus:border-[#6a00ff] focus:bg-white/10 transition-all outline-none"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-[10px] font-bold text-[#c7a7ff] uppercase tracking-wider mb-1">Required Growth Package *</label>
+                <select
+                  value={formData.package}
+                  onChange={(e) => setFormData({ ...formData, package: e.target.value })}
+                  className="w-full bg-[#130d25] border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:border-[#6a00ff] focus:bg-white/10 transition-all outline-none font-medium"
+                >
+                  <option value="Starter Launch (£499)">Starter Launch (£499)</option>
+                  <option value="Business Growth (£999)">Business Growth (£999)</option>
+                  <option value="Ecommerce Store (£699)">Ecommerce Store (£699)</option>
+                  <option value="Custom Enterprise Solution">Custom Enterprise Solution</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-[10px] font-bold text-[#c7a7ff] uppercase tracking-wider mb-1">Message (Optional)</label>
+                <textarea
+                  placeholder="Tell us about your services and target area..."
+                  rows={3}
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  className="w-full bg-white/5 border border-white/10 rounded-xl p-3.5 text-xs text-white placeholder:text-white/20 focus:border-[#6a00ff] focus:bg-white/10 transition-all outline-none resize-none"
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={formState === 'loading'}
+                className="w-full bg-[#6a00ff] hover:bg-[#3b0a75] text-white text-xs font-bold py-3.5 px-6 rounded-xl flex items-center justify-center gap-2 transition-all duration-300 shadow-[0_6px_16px_rgba(106,0,255,0.2)] mt-2"
+              >
+                {formState === 'loading' ? 'Submitting Details...' : 'Request Free Consultation'}
+              </button>
+
+              {formState === 'error' && (
+                <p className="text-red-400 text-[10px] text-center font-semibold mt-1">
+                  Failed to send. Please check your credentials and try again.
+                </p>
+              )}
+            </form>
+          )}
+        </div>
+      </section>
+    </>
+  );
+}
