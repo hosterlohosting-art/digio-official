@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import SEO from '../components/SEO';
 import { 
   Phone, CheckCircle, Server, Search, Target, 
-  ChevronDown, ChevronUp, Star, Check, Laptop, MessageSquare, MapPin, Mail, ShieldCheck
+  ChevronDown, ChevronUp, Star, Check, Laptop, MessageSquare, MapPin, Mail, ShieldCheck,
+  Zap, HeartHandshake, CreditCard, Layers, Compass, Code, Rocket
 } from 'lucide-react';
 import ScrollReveal from '../components/ScrollReveal';
 import PortfolioCard from '../components/PortfolioCard';
@@ -78,6 +79,30 @@ const featuredProjects = [
     result: '4,500+ Signups Generated',
     link: '/work'
   },
+];
+
+const testimonials = [
+  {
+    stars: 5,
+    quote: "Digioverse built a custom booking system and website for our clinic. We saw a 45% increase in online bookings within the first month. Ahsan and the team are absolute professionals.",
+    author: "Sarah M.",
+    role: "Clinic Owner, Woking",
+    initials: "SM"
+  },
+  {
+    stars: 5,
+    quote: "Digioverse built our construction website and set up Google Ads. The calls started landing the second week of launch. Very responsive and transparent guys to work with.",
+    author: "Thomas C.",
+    role: "Carpentry Director, Surrey",
+    initials: "TC"
+  },
+  {
+    stars: 5,
+    quote: "The transparency of pricing is what won us over. We got a custom site, branding, and Google Ads launched in 3 weeks. Our lead acquisition cost dropped by 40% immediately.",
+    author: "David K.",
+    role: "SaaS Founder, London",
+    initials: "DK"
+  }
 ];
 
 export default function GrowLandingPage() {
@@ -421,44 +446,136 @@ export default function GrowLandingPage() {
         </div>
       </section>
 
-      {/* 3-Step Process Framework */}
-      <section className="bg-[#f7f7fa] py-16 md:py-24 border-b border-[#ddd0f4]/50">
+      {/* WHY CHOOSE US SECTION */}
+      <section className="bg-white py-16 md:py-24">
         <div className="max-w-[1280px] mx-auto px-5 md:px-8 lg:px-12">
+          
           <div className="max-w-[600px] mx-auto text-center mb-16">
-            <span className="text-xs font-bold text-[#6a00ff] uppercase tracking-wider">How we do it</span>
-            <h2 className="text-3xl md:text-[40px] font-bold text-[#0d0520] mt-3 font-['Plus_Jakarta_Sans']">
-              Our 3-Step Growth Framework
+            <span className="text-xs font-bold text-[#6a00ff] uppercase tracking-wider">Our Edge</span>
+            <h2 className="text-3xl md:text-[40px] font-bold text-[#0d0520] mt-3 font-['Plus_Jakarta_Sans'] tracking-tight">
+              Why UK Businesses Choose Digioverse
             </h2>
             <p className="text-sm text-[#53445f] mt-3 font-['Outfit']">
-              We manage the entire system so you can focus on running your business. Here is how we get you up and running:
+              We design and execute campaigns that lower lead costs and build premium brand authority.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            <ScrollReveal className="bg-white border border-[#ddd0f4]/35 p-8 rounded-3xl relative h-full shadow-[0_4px_24px_rgba(13,5,32,0.02)]">
-              <span className="text-5xl font-extrabold text-[#ddd0f4]/50 font-['Plus_Jakarta_Sans'] block mb-4">01</span>
-              <h3 className="text-lg font-bold text-[#0d0520] font-['Plus_Jakarta_Sans']">Free Strategy Session</h3>
-              <p className="text-xs text-[#53445f] mt-3 leading-relaxed font-['Outfit']">
-                We study your local market, identify high-intent keywords that customers type when looking for your service, and map out a structured action plan.
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <ScrollReveal className="bg-[#f7f7fa] border border-[#ddd0f4]/45 p-7 rounded-3xl relative">
+              <div className="w-10 h-10 rounded-xl bg-purple-100 flex items-center justify-center text-[#6a00ff] mb-4">
+                <HeartHandshake className="w-5 h-5" />
+              </div>
+              <h4 className="font-bold text-[#0d0520] text-base font-['Plus_Jakarta_Sans']">Direct Founder Access</h4>
+              <p className="text-xs text-[#53445f] mt-2.5 leading-relaxed font-['Outfit']">
+                You work directly with lead developers and growth strategists, not junior account managers. No communication leakage.
               </p>
             </ScrollReveal>
 
-            <ScrollReveal delay={0.1} className="bg-white border border-[#ddd0f4]/35 p-8 rounded-3xl relative h-full shadow-[0_4px_24px_rgba(13,5,32,0.02)]">
-              <span className="text-5xl font-extrabold text-[#ddd0f4]/50 font-['Plus_Jakarta_Sans'] block mb-4">02</span>
-              <h3 className="text-lg font-bold text-[#0d0520] font-['Plus_Jakarta_Sans']">Asset Development</h3>
-              <p className="text-xs text-[#53445f] mt-3 leading-relaxed font-['Outfit']">
-                We custom build your high-converting website from scratch, register your domain, hook up premium hosting, configure emails, and integrate lead forms.
+            <ScrollReveal delay={0.1} className="bg-[#f7f7fa] border border-[#ddd0f4]/45 p-7 rounded-3xl relative">
+              <div className="w-10 h-10 rounded-xl bg-purple-100 flex items-center justify-center text-[#6a00ff] mb-4">
+                <Zap className="w-5 h-5" />
+              </div>
+              <h4 className="font-bold text-[#0d0520] text-base font-['Plus_Jakarta_Sans']">Lightning Fast Static Code</h4>
+              <p className="text-xs text-[#53445f] mt-2.5 leading-relaxed font-['Outfit']">
+                We write custom compiled code using frameworks like React. Zero bloated templates. Sites load in under a second.
               </p>
             </ScrollReveal>
 
-            <ScrollReveal delay={0.2} className="bg-white border border-[#ddd0f4]/35 p-8 rounded-3xl relative h-full shadow-[0_4px_24px_rgba(13,5,32,0.02)]">
-              <span className="text-5xl font-extrabold text-[#ddd0f4]/50 font-['Plus_Jakarta_Sans'] block mb-4">03</span>
-              <h3 className="text-lg font-bold text-[#0d0520] font-['Plus_Jakarta_Sans']">Campaign Launch</h3>
-              <p className="text-xs text-[#53445f] mt-3 leading-relaxed font-['Outfit']">
-                We launch optimized Google Ads campaigns targeting searchers with active intent, routing phone calls and leads directly to your inbox.
+            <ScrollReveal delay={0.2} className="bg-[#f7f7fa] border border-[#ddd0f4]/45 p-7 rounded-3xl relative">
+              <div className="w-10 h-10 rounded-xl bg-purple-100 flex items-center justify-center text-[#6a00ff] mb-4">
+                <CreditCard className="w-5 h-5" />
+              </div>
+              <h4 className="font-bold text-[#0d0520] text-base font-['Plus_Jakarta_Sans']">Transparent Fixed Pricing</h4>
+              <p className="text-xs text-[#53445f] mt-2.5 leading-relaxed font-['Outfit']">
+                Flat, upfront rates for design and setup. You know exactly what you are paying for, with zero hidden retainers or surprises.
+              </p>
+            </ScrollReveal>
+
+            <ScrollReveal delay={0.3} className="bg-[#f7f7fa] border border-[#ddd0f4]/45 p-7 rounded-3xl relative">
+              <div className="w-10 h-10 rounded-xl bg-purple-100 flex items-center justify-center text-[#6a00ff] mb-4">
+                <Layers className="w-5 h-5" />
+              </div>
+              <h4 className="font-bold text-[#0d0520] text-base font-['Plus_Jakarta_Sans']">Complete All-in-One Delivery</h4>
+              <p className="text-xs text-[#53445f] mt-2.5 leading-relaxed font-['Outfit']">
+                We coordinate everything: purchasing domains, setting up cloud nodes, configuring SSL, structuring SEO, and running Google campaigns.
               </p>
             </ScrollReveal>
           </div>
+
+        </div>
+      </section>
+
+      {/* DETAILED PROJECT ROADMAP (HOW IT WORKS) */}
+      <section className="bg-[#f7f7fa] py-16 md:py-24 border-y border-[#ddd0f4]/50">
+        <div className="max-w-[1280px] mx-auto px-5 md:px-8 lg:px-12">
+          
+          <div className="max-w-[600px] mx-auto text-center mb-16">
+            <span className="text-xs font-bold text-[#6a00ff] uppercase tracking-wider">Project Timeline</span>
+            <h2 className="text-3xl md:text-[40px] font-bold text-[#0d0520] mt-3 font-['Plus_Jakarta_Sans'] tracking-tight">
+              Our Step-by-Step Delivery Roadmap
+            </h2>
+            <p className="text-sm text-[#53445f] mt-3 font-['Outfit']">
+              A transparent breakdown of how we build, configure, and launch your business platforms from scratch.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-4 gap-6 relative">
+            {/* Visual connector line for timeline (desktop only) */}
+            <div className="hidden lg:block absolute top-[44px] left-[10%] right-[10%] h-0.5 bg-gradient-to-r from-[#6a00ff] to-[#ddd0f4] z-0" />
+
+            {/* Roadmap Phase 1 */}
+            <ScrollReveal className="bg-white border border-[#ddd0f4]/40 p-6 rounded-3xl relative z-10 shadow-[0_4px_20px_rgba(13,5,32,0.01)]">
+              <div className="w-12 h-12 rounded-2xl bg-[#6a00ff] text-white flex items-center justify-center font-bold text-sm font-['Plus_Jakarta_Sans'] shadow-[0_4px_12px_rgba(106,0,255,0.2)] mb-5">
+                <Compass className="w-5 h-5" />
+              </div>
+              <span className="text-[10px] font-bold uppercase tracking-wider text-[#6a00ff]">Phase 1</span>
+              <h4 className="font-bold text-[#0d0520] text-base font-['Plus_Jakarta_Sans'] mt-1">Research & Strategy</h4>
+              <span className="text-[10px] text-[#7d718c] font-semibold block mt-0.5">Days 1 - 5</span>
+              <p className="text-xs text-[#53445f] mt-3 leading-relaxed font-['Outfit']">
+                We perform competitor benchmarking, map out high-intent local keywords, structure lead acquisition paths, and finalize page hierarchies.
+              </p>
+            </ScrollReveal>
+
+            {/* Roadmap Phase 2 */}
+            <ScrollReveal delay={0.1} className="bg-white border border-[#ddd0f4]/40 p-6 rounded-3xl relative z-10 shadow-[0_4px_20px_rgba(13,5,32,0.01)]">
+              <div className="w-12 h-12 rounded-2xl bg-[#6a00ff] text-white flex items-center justify-center font-bold text-sm font-['Plus_Jakarta_Sans'] shadow-[0_4px_12px_rgba(106,0,255,0.2)] mb-5">
+                <Laptop className="w-5 h-5" />
+              </div>
+              <span className="text-[10px] font-bold uppercase tracking-wider text-[#6a00ff]">Phase 2</span>
+              <h4 className="font-bold text-[#0d0520] text-base font-['Plus_Jakarta_Sans'] mt-1">Custom UI Design</h4>
+              <span className="text-[10px] text-[#7d718c] font-semibold block mt-0.5">Days 6 - 12</span>
+              <p className="text-xs text-[#53445f] mt-3 leading-relaxed font-['Outfit']">
+                We construct a bespoke graphical interface in Figma matching your brand, layout high-converting call-to-actions, and author initial copywriting.
+              </p>
+            </ScrollReveal>
+
+            {/* Roadmap Phase 3 */}
+            <ScrollReveal delay={0.2} className="bg-white border border-[#ddd0f4]/40 p-6 rounded-3xl relative z-10 shadow-[0_4px_20px_rgba(13,5,32,0.01)]">
+              <div className="w-12 h-12 rounded-2xl bg-[#6a00ff] text-white flex items-center justify-center font-bold text-sm font-['Plus_Jakarta_Sans'] shadow-[0_4px_12px_rgba(106,0,255,0.2)] mb-5">
+                <Code className="w-5 h-5" />
+              </div>
+              <span className="text-[10px] font-bold uppercase tracking-wider text-[#6a00ff]">Phase 3</span>
+              <h4 className="font-bold text-[#0d0520] text-base font-['Plus_Jakarta_Sans'] mt-1">Technical Coding</h4>
+              <span className="text-[10px] text-[#7d718c] font-semibold block mt-0.5">Days 13 - 20</span>
+              <p className="text-xs text-[#53445f] mt-3 leading-relaxed font-['Outfit']">
+                Our engineers code the site using React/WordPress. We purchase the domain, set up cloud server hosting, configure SSL, sitemaps, and business emails.
+              </p>
+            </ScrollReveal>
+
+            {/* Roadmap Phase 4 */}
+            <ScrollReveal delay={0.3} className="bg-white border border-[#ddd0f4]/40 p-6 rounded-3xl relative z-10 shadow-[0_4px_20px_rgba(13,5,32,0.01)]">
+              <div className="w-12 h-12 rounded-2xl bg-[#3b0a75] text-white flex items-center justify-center font-bold text-sm font-['Plus_Jakarta_Sans'] shadow-[0_4px_12px_rgba(106,0,255,0.2)] mb-5">
+                <Rocket className="w-5 h-5" />
+              </div>
+              <span className="text-[10px] font-bold uppercase tracking-wider text-[#6a00ff]">Phase 4</span>
+              <h4 className="font-bold text-[#0d0520] text-base font-['Plus_Jakarta_Sans'] mt-1">Ads Launch & Optimization</h4>
+              <span className="text-[10px] text-[#7d718c] font-semibold block mt-0.5">Days 21 - 25</span>
+              <p className="text-xs text-[#53445f] mt-3 leading-relaxed font-['Outfit']">
+                We trigger tracking tags, launch highly-optimized search keywords on Google Ads, set up conversion goals, and deliver live leads directly to your CRM.
+              </p>
+            </ScrollReveal>
+          </div>
+
         </div>
       </section>
 
@@ -709,6 +826,47 @@ export default function GrowLandingPage() {
           <p className="text-[10px] text-center text-[#7d718c] mt-10">
             * Starter footers include standard license support. Pricing excludes Google Ads advertising budget click payments.
           </p>
+        </div>
+      </section>
+
+      {/* Trust & Testimonial Section */}
+      <section className="bg-white py-16 md:py-24">
+        <div className="max-w-[1280px] mx-auto px-5 md:px-8 lg:px-12">
+          
+          <div className="max-w-[600px] mx-auto text-center mb-16">
+            <span className="text-xs font-bold text-[#6a00ff] uppercase tracking-wider">Client Testimonials</span>
+            <h2 className="text-3xl md:text-[40px] font-bold text-[#0d0520] mt-3 font-['Plus_Jakarta_Sans'] tracking-tight">
+              What UK Business Owners Say About Us
+            </h2>
+            <p className="text-sm text-[#53445f] mt-3 font-['Outfit']">
+              Our custom designs and targeted ad structures help firms convert more calls and leads.
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-3 gap-8">
+            {testimonials.map((t, idx) => (
+              <ScrollReveal key={idx} delay={idx * 0.1} className="bg-[#f7f7fa] border border-[#ddd0f4]/45 p-7 rounded-3xl relative flex flex-col justify-between shadow-[0_4px_24px_rgba(13,5,32,0.01)] hover:shadow-[0_8px_32px_rgba(13,5,32,0.03)] transition-all">
+                <div>
+                  <div className="flex items-center gap-0.5 mb-4">
+                    {[...Array(t.stars)].map((_, i) => <Star key={i} className="w-3.5 h-3.5 fill-[#FBBC05] text-[#FBBC05]" />)}
+                  </div>
+                  <p className="text-xs text-[#53445f] italic leading-relaxed font-['Outfit']">
+                    "{t.quote}"
+                  </p>
+                </div>
+                <div className="mt-6 pt-4 border-t border-[#ddd0f4]/55 flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-purple-100 text-[#6a00ff] flex items-center justify-center font-bold text-xs">
+                    {t.initials}
+                  </div>
+                  <div>
+                    <h5 className="font-bold text-xs text-[#0d0520] font-['Plus_Jakarta_Sans']">{t.author}</h5>
+                    <span className="text-[9px] text-[#7d718c] font-semibold">{t.role}</span>
+                  </div>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+
         </div>
       </section>
 
