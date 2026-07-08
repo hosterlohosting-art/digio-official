@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import SEO from '../components/SEO';
 import { 
   Phone, CheckCircle, Server, Search, Target, 
-  ChevronDown, ChevronUp, Star, Check, Laptop, MessageSquare
+  ChevronDown, ChevronUp, Star, Check, Laptop, MessageSquare, MapPin, Mail, ShieldCheck
 } from 'lucide-react';
 import ScrollReveal from '../components/ScrollReveal';
+import PortfolioCard from '../components/PortfolioCard';
 
 // Custom Accordion Component for landing page FAQs
 function AccordionItem({ question, answer, isOpen, onClick }: { question: string; answer: string; isOpen: boolean; onClick: () => void }) {
@@ -30,6 +31,54 @@ function AccordionItem({ question, answer, isOpen, onClick }: { question: string
     </div>
   );
 }
+
+const team = [
+  { 
+    name: 'Ahsan', 
+    role: 'Managing Director & Developer', 
+    bio: 'With 7+ years of experience in SEO, digital marketing, and full-stack software engineering, Ahsan drives the core technical architecture and organic visibility strategies for Digioverse.', 
+    image: '/assets/ahsan_founder.jpg' 
+  },
+  { 
+    name: 'Mehar Hassan', 
+    role: 'Co-Founder & Head of Growth', 
+    bio: 'Bringing 12+ years of elite experience in digital strategy and customer acquisition, Mehar Hassan architects high-converting advertising funnels and client growth pipelines.', 
+    image: '/assets/mehar_founder.png' 
+  },
+  { 
+    name: 'Musa Shahzad', 
+    role: 'Senior Web & Automation Engineer', 
+    bio: 'With 4+ years of specialized experience in frontend frameworks and API integrations, Musa constructs robust web applications and automated lead flows.', 
+    image: '/assets/musa.png' 
+  },
+];
+
+const featuredProjects = [
+  { 
+    image: '/assets/ppc-lead-acquisition-funnel.png', 
+    title: 'Google Ads Acquisition System', 
+    businessType: 'PPC Lead Gen',
+    description: 'Designed high-converting landing pages combined with optimized Google Search campaign structures for local service companies.',
+    result: '320% Increase in Enquiries',
+    link: '/work'
+  },
+  { 
+    image: '/assets/premium-tech-hero-bg.png', 
+    title: 'Premium Corporate Platform', 
+    businessType: 'Web Development',
+    description: 'A blazing-fast custom React website set up with secure SSL, premium hosting, sitemap registration, and Google schema integration.',
+    result: 'Under 1.2s Load Speed',
+    link: '/work'
+  },
+  { 
+    image: '/assets/premium-saas-hero.png', 
+    title: 'SaaS Platform Release', 
+    businessType: 'SaaS Product',
+    description: 'Interactive dashboard interfaces and automated email setups helping growth brands acquire beta signups rapidly.',
+    result: '4,500+ Signups Generated',
+    link: '/work'
+  },
+];
 
 export default function GrowLandingPage() {
   // Form submission states
@@ -167,7 +216,7 @@ export default function GrowLandingPage() {
       </nav>
 
       {/* Hero Section with Form Above-the-Fold */}
-      <section className="bg-gradient-to-b from-[#f7f7fa] to-[#eee7ff] pt-32 pb-16 md:pt-40 md:pb-24 relative overflow-hidden">
+      <section className="bg-gradient-to-b from-[#f7f7fa] to-[#eee7ff] pt-32 pb-12 md:pt-40 md:pb-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(106,0,255,0.05),transparent_40%)] pointer-events-none" />
         
         <div className="max-w-[1280px] mx-auto px-5 md:px-8 lg:px-12 relative z-10">
@@ -214,23 +263,6 @@ export default function GrowLandingPage() {
                     <h4 className="font-semibold text-[#0d0520] text-sm">Active Google Ads Setup & Optimization</h4>
                     <p className="text-xs text-[#7d718c]">Instant visibility: placing you on page one when people are searching.</p>
                   </div>
-                </div>
-              </div>
-
-              {/* Trust badges */}
-              <div className="flex items-center gap-6 mt-10 border-t border-[#ddd0f4]/60 pt-6">
-                <div className="flex -space-x-2">
-                  <div className="w-8 h-8 rounded-full bg-[#6a00ff] text-white flex items-center justify-center text-[10px] font-bold border border-white">M</div>
-                  <div className="w-8 h-8 rounded-full bg-[#3b0a75] text-white flex items-center justify-center text-[10px] font-bold border border-white">A</div>
-                  <div className="w-8 h-8 rounded-full bg-purple-600 text-white flex items-center justify-center text-[10px] font-bold border border-white">S</div>
-                </div>
-                <div>
-                  <div className="flex items-center gap-0.5">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-                    ))}
-                  </div>
-                  <span className="text-xs text-[#7d718c] font-semibold">Loved by 30+ UK Business Owners</span>
                 </div>
               </div>
             </div>
@@ -330,12 +362,6 @@ export default function GrowLandingPage() {
                   >
                     {formState === 'loading' ? 'Submitting Details...' : 'Get Free Strategy Plan'}
                   </button>
-
-                  {formState === 'error' && (
-                    <p className="text-red-500 text-[10px] text-center font-semibold mt-1">
-                      Failed to submit. Please check your connection and retry.
-                    </p>
-                  )}
                 </form>
               )}
             </div>
@@ -344,8 +370,59 @@ export default function GrowLandingPage() {
         </div>
       </section>
 
+      {/* Trust Strip with Google Reviews & UK Credentials */}
+      <section className="bg-white py-8 border-y border-[#ddd0f4]/60">
+        <div className="max-w-[1280px] mx-auto px-5 md:px-8 lg:px-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 items-center text-center">
+            
+            {/* Google Reviews Trust Badge */}
+            <div className="flex flex-col items-center justify-center border-r border-[#ddd0f4]/40 last:border-r-0">
+              <div className="flex items-center gap-1.5 text-xs font-extrabold text-[#0d0520] font-['Plus_Jakarta_Sans']">
+                <span className="text-[#4285F4]">G</span>
+                <span className="text-[#EA4335]">o</span>
+                <span className="text-[#FBBC05]">o</span>
+                <span className="text-[#4285F4]">g</span>
+                <span className="text-[#34A853]">l</span>
+                <span className="text-[#EA4335]">e</span>
+                <span>Rating</span>
+              </div>
+              <div className="flex items-center gap-0.5 mt-1.5">
+                {[...Array(5)].map((_, i) => <Star key={i} className="w-3.5 h-3.5 fill-[#FBBC05] text-[#FBBC05]" />)}
+              </div>
+              <span className="text-[10px] text-[#7d718c] font-bold mt-1">4.9/5 based on 32 Reviews</span>
+            </div>
+
+            {/* UK Registration Badge */}
+            <div className="flex flex-col items-center justify-center border-r border-[#ddd0f4]/40 last:border-r-0">
+              <span className="text-xs font-extrabold text-[#0d0520] font-['Plus_Jakarta_Sans']">UK Registered Agency</span>
+              <span className="text-[10px] font-mono text-[#6a00ff] bg-purple-100 px-2 py-0.5 rounded mt-1.5 font-bold">No. 17236340</span>
+              <span className="text-[10px] text-[#7d718c] font-bold mt-1">Digioverse LTD</span>
+            </div>
+
+            {/* Speed Check Badge */}
+            <div className="flex flex-col items-center justify-center border-r border-[#ddd0f4]/40 last:border-r-0">
+              <span className="text-xs font-extrabold text-[#0d0520] font-['Plus_Jakarta_Sans']">Lightning Fast Load</span>
+              <div className="flex items-center gap-1 text-[10px] text-[#34A853] font-bold mt-1.5">
+                <CheckCircle className="w-3.5 h-3.5" /> 100/100 Core Web Vitals
+              </div>
+              <span className="text-[10px] text-[#7d718c] font-bold mt-1">React Static Generation</span>
+            </div>
+
+            {/* Secure Hosting Badge */}
+            <div className="flex flex-col items-center justify-center last:border-r-0">
+              <span className="text-xs font-extrabold text-[#0d0520] font-['Plus_Jakarta_Sans']">SSL Security Encryption</span>
+              <div className="flex items-center gap-1 text-[#6a00ff] font-bold text-[10px] mt-1.5">
+                <ShieldCheck className="w-3.5 h-3.5" /> Fully Secured Cloud Server
+              </div>
+              <span className="text-[10px] text-[#7d718c] font-bold mt-1">Free SSL Included</span>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
       {/* 3-Step Process Framework */}
-      <section className="bg-white py-16 md:py-24 border-b border-[#ddd0f4]/50">
+      <section className="bg-[#f7f7fa] py-16 md:py-24 border-b border-[#ddd0f4]/50">
         <div className="max-w-[1280px] mx-auto px-5 md:px-8 lg:px-12">
           <div className="max-w-[600px] mx-auto text-center mb-16">
             <span className="text-xs font-bold text-[#6a00ff] uppercase tracking-wider">How we do it</span>
@@ -358,7 +435,7 @@ export default function GrowLandingPage() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <ScrollReveal className="bg-[#f7f7fa] border border-[#ddd0f4]/35 p-8 rounded-3xl relative h-full">
+            <ScrollReveal className="bg-white border border-[#ddd0f4]/35 p-8 rounded-3xl relative h-full shadow-[0_4px_24px_rgba(13,5,32,0.02)]">
               <span className="text-5xl font-extrabold text-[#ddd0f4]/50 font-['Plus_Jakarta_Sans'] block mb-4">01</span>
               <h3 className="text-lg font-bold text-[#0d0520] font-['Plus_Jakarta_Sans']">Free Strategy Session</h3>
               <p className="text-xs text-[#53445f] mt-3 leading-relaxed font-['Outfit']">
@@ -366,7 +443,7 @@ export default function GrowLandingPage() {
               </p>
             </ScrollReveal>
 
-            <ScrollReveal delay={0.1} className="bg-[#f7f7fa] border border-[#ddd0f4]/35 p-8 rounded-3xl relative h-full">
+            <ScrollReveal delay={0.1} className="bg-white border border-[#ddd0f4]/35 p-8 rounded-3xl relative h-full shadow-[0_4px_24px_rgba(13,5,32,0.02)]">
               <span className="text-5xl font-extrabold text-[#ddd0f4]/50 font-['Plus_Jakarta_Sans'] block mb-4">02</span>
               <h3 className="text-lg font-bold text-[#0d0520] font-['Plus_Jakarta_Sans']">Asset Development</h3>
               <p className="text-xs text-[#53445f] mt-3 leading-relaxed font-['Outfit']">
@@ -374,7 +451,7 @@ export default function GrowLandingPage() {
               </p>
             </ScrollReveal>
 
-            <ScrollReveal delay={0.2} className="bg-[#f7f7fa] border border-[#ddd0f4]/35 p-8 rounded-3xl relative h-full">
+            <ScrollReveal delay={0.2} className="bg-white border border-[#ddd0f4]/35 p-8 rounded-3xl relative h-full shadow-[0_4px_24px_rgba(13,5,32,0.02)]">
               <span className="text-5xl font-extrabold text-[#ddd0f4]/50 font-['Plus_Jakarta_Sans'] block mb-4">03</span>
               <h3 className="text-lg font-bold text-[#0d0520] font-['Plus_Jakarta_Sans']">Campaign Launch</h3>
               <p className="text-xs text-[#53445f] mt-3 leading-relaxed font-['Outfit']">
@@ -382,6 +459,40 @@ export default function GrowLandingPage() {
               </p>
             </ScrollReveal>
           </div>
+        </div>
+      </section>
+
+      {/* Visual Portfolio Section */}
+      <section className="bg-white py-16 md:py-24">
+        <div className="max-w-[1280px] mx-auto px-5 md:px-8 lg:px-12">
+          
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+            <div>
+              <span className="text-xs font-bold text-[#6a00ff] uppercase tracking-wider">Proof of Work</span>
+              <h2 className="text-3xl md:text-[40px] font-bold text-[#0d0520] mt-3 font-['Plus_Jakarta_Sans'] tracking-tight">
+                Our Recent Projects & Case Studies
+              </h2>
+              <p className="text-sm text-[#53445f] mt-2 font-['Outfit']">
+                Explore real results from custom website development, PPC campaigns, and branding architectures.
+              </p>
+            </div>
+            
+            <button 
+              onClick={scrollToForm}
+              className="bg-[#6a00ff] hover:bg-[#3b0a75] text-white text-xs font-bold py-3.5 px-6 rounded-xl transition-all shrink-0"
+            >
+              Get Your Custom Blueprint
+            </button>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {featuredProjects.map((p, i) => (
+              <ScrollReveal key={i} delay={i * 0.1}>
+                <PortfolioCard {...p} />
+              </ScrollReveal>
+            ))}
+          </div>
+
         </div>
       </section>
 
@@ -463,8 +574,40 @@ export default function GrowLandingPage() {
         </div>
       </section>
 
+      {/* Meet the Founders / Team Section */}
+      <section className="bg-white py-16 md:py-24">
+        <div className="max-w-[1280px] mx-auto px-5 md:px-8 lg:px-12">
+          
+          <div className="max-w-[600px] mx-auto text-center mb-16">
+            <span className="text-xs font-bold text-[#6a00ff] uppercase tracking-wider">Who we are</span>
+            <h2 className="text-3xl md:text-[40px] font-bold text-[#0d0520] mt-3 font-['Plus_Jakarta_Sans']">
+              Meet the Growth Engineers Behind Your Project
+            </h2>
+            <p className="text-sm text-[#53445f] mt-3 font-['Outfit']">
+              We work directly with you. No account managers or call centers—just real engineers, designers, and growth strategists.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {team.map((t, idx) => (
+              <ScrollReveal key={idx} delay={idx * 0.1} className="bg-[#f7f7fa] border border-[#ddd0f4]/40 rounded-3xl p-6 flex flex-col items-center text-center">
+                <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-[#6a00ff] shadow-lg mb-4">
+                  <img src={t.image} alt={t.name} className="w-full h-full object-cover" />
+                </div>
+                <h4 className="font-bold text-[#0d0520] text-lg font-['Plus_Jakarta_Sans']">{t.name}</h4>
+                <span className="text-xs font-semibold text-[#6a00ff] mt-1">{t.role}</span>
+                <p className="text-xs text-[#53445f] mt-3 leading-relaxed font-['Outfit']">
+                  {t.bio}
+                </p>
+              </ScrollReveal>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
       {/* Pricing Packages */}
-      <section className="bg-white py-16 md:py-24 border-t border-[#ddd0f4]/40">
+      <section className="bg-[#f7f7fa] py-16 md:py-24 border-t border-[#ddd0f4]/40">
         <div className="max-w-[1280px] mx-auto px-5 md:px-8 lg:px-12">
           
           <div className="max-w-[600px] mx-auto text-center mb-16">
@@ -479,7 +622,7 @@ export default function GrowLandingPage() {
 
           <div className="grid md:grid-cols-3 gap-8">
             {/* Package 1 */}
-            <ScrollReveal className="bg-[#f7f7fa] border border-[#ddd0f4]/55 rounded-3xl p-8 flex flex-col justify-between h-full">
+            <ScrollReveal className="bg-white border border-[#ddd0f4]/55 rounded-3xl p-8 flex flex-col justify-between h-full shadow-[0_4px_24px_rgba(13,5,32,0.02)]">
               <div>
                 <span className="text-xs font-bold uppercase tracking-wider text-[#6a00ff] bg-purple-100 px-3 py-1 rounded-full">
                   Startup Launch
@@ -536,7 +679,7 @@ export default function GrowLandingPage() {
             </ScrollReveal>
 
             {/* Package 3 */}
-            <ScrollReveal delay={0.2} className="bg-[#f7f7fa] border border-[#ddd0f4]/55 rounded-3xl p-8 flex flex-col justify-between h-full">
+            <ScrollReveal delay={0.2} className="bg-white border border-[#ddd0f4]/55 rounded-3xl p-8 flex flex-col justify-between h-full shadow-[0_4px_24px_rgba(13,5,32,0.02)]">
               <div>
                 <span className="text-xs font-bold uppercase tracking-wider text-[#6a00ff] bg-purple-100 px-3 py-1 rounded-full">
                   Ecommerce Store
@@ -569,53 +712,79 @@ export default function GrowLandingPage() {
         </div>
       </section>
 
-      {/* Trust & Testimonial Section */}
-      <section className="bg-[#f7f7fa] py-16 md:py-24">
+      {/* Map, Address & UK Corporate Trust Section */}
+      <section className="bg-white py-16 md:py-24 border-t border-[#ddd0f4]/40">
         <div className="max-w-[1280px] mx-auto px-5 md:px-8 lg:px-12">
           
-          <div className="grid lg:grid-cols-[35%_60%] gap-12 items-center">
-            <div>
-              <span className="text-xs font-bold text-[#6a00ff] uppercase tracking-wider">Client Reviews</span>
-              <h2 className="text-3xl md:text-[40px] font-bold text-[#0d0520] mt-3 font-['Plus_Jakarta_Sans']">
-                What UK Business Owners Say
-              </h2>
-              <p className="text-sm text-[#53445f] mt-3 leading-relaxed font-['Outfit']">
-                Our custom designs and target ads campaign configurations help local firms increase call rates and email leads within weeks of launch.
-              </p>
+          <div className="grid lg:grid-cols-[45%_50%] gap-12 items-center">
+            {/* Left: Office Address Details */}
+            <div className="space-y-6">
+              <div>
+                <span className="text-xs font-bold text-[#6a00ff] uppercase tracking-wider">Office Location</span>
+                <h2 className="text-3xl font-bold text-[#0d0520] mt-3 font-['Plus_Jakarta_Sans']">
+                  Our UK Headquarters & Registered Office
+                </h2>
+                <p className="text-sm text-[#53445f] mt-3 leading-relaxed font-['Outfit']">
+                  We are based in Woking, Surrey, with coverage extending across Surrey, Romford, London, and the wider UK. Stop by or book a virtual call.
+                </p>
+              </div>
+
+              <div className="space-y-4">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-purple-100 flex items-center justify-center text-[#6a00ff] shrink-0">
+                    <MapPin className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h5 className="font-bold text-[#0d0520] text-sm font-['Plus_Jakarta_Sans']">Physical Office Address</h5>
+                    <p className="text-xs text-[#53445f] mt-1 leading-relaxed font-['Outfit']">
+                      1A North Rd, Woking, Surrey, GU21 5DS, United Kingdom
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-purple-100 flex items-center justify-center text-[#6a00ff] shrink-0">
+                    <Mail className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h5 className="font-bold text-[#0d0520] text-sm font-['Plus_Jakarta_Sans']">Corporate Inquiries</h5>
+                    <p className="text-xs text-[#53445f] mt-1 leading-relaxed font-['Outfit']">
+                      support@digioverse.com | info@digioverse.com
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-purple-100 flex items-center justify-center text-[#6a00ff] shrink-0">
+                    <Phone className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h5 className="font-bold text-[#0d0520] text-sm font-['Plus_Jakarta_Sans']">Call Support</h5>
+                    <p className="text-xs text-[#53445f] mt-1 leading-relaxed font-['Outfit']">
+                      +44 2046 155575 (Mon - Fri, 9am - 6pm GMT)
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-[#f7f7fa] border border-[#ddd0f4]/50 p-5 rounded-2xl text-xs text-[#7d718c] leading-relaxed">
+                <strong>DIGIOVERSE LTD</strong> is a company registered in England and Wales under Company Registration Number <strong>17236340</strong>.
+              </div>
             </div>
 
-            <div className="grid sm:grid-cols-2 gap-6">
-              <ScrollReveal className="bg-white border border-[#ddd0f4]/45 p-6 rounded-2xl shadow-[0_4px_20px_rgba(13,5,32,0.01)]">
-                <div className="flex items-center gap-0.5 mb-3">
-                  {[...Array(5)].map((_, i) => <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />)}
-                </div>
-                <p className="text-xs text-[#53445f] italic leading-relaxed font-['Outfit']">
-                  "Digioverse built our construction website and set up Google Ads. The calls started landing the second week of launch. Extremely transparent guys to work with."
-                </p>
-                <div className="mt-4 flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-purple-100 text-[#6a00ff] flex items-center justify-center font-bold text-xs">TC</div>
-                  <div>
-                    <h5 className="font-bold text-xs text-[#0d0520]">Thomas C.</h5>
-                    <span className="text-[9px] text-[#7d718c]">Carpentry Director, Surrey</span>
-                  </div>
-                </div>
-              </ScrollReveal>
-
-              <ScrollReveal delay={0.1} className="bg-white border border-[#ddd0f4]/45 p-6 rounded-2xl shadow-[0_4px_20px_rgba(13,5,32,0.01)]">
-                <div className="flex items-center gap-0.5 mb-3">
-                  {[...Array(5)].map((_, i) => <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />)}
-                </div>
-                <p className="text-xs text-[#53445f] italic leading-relaxed font-['Outfit']">
-                  "They handled everything from the domain registration and email set up to design and local SEO. The site looks stunning and loads instantly on mobiles."
-                </p>
-                <div className="mt-4 flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-purple-100 text-[#6a00ff] flex items-center justify-center font-bold text-xs">SM</div>
-                  <div>
-                    <h5 className="font-bold text-xs text-[#0d0520]">Sarah M.</h5>
-                    <span className="text-[9px] text-[#7d718c]">Clinic Owner, Woking</span>
-                  </div>
-                </div>
-              </ScrollReveal>
+            {/* Right: Embedded Google Map Reference or visual mockup */}
+            <div className="aspect-[4/3] rounded-3xl overflow-hidden border border-[#ddd0f4] shadow-[0_12px_36px_rgba(13,5,32,0.04)] bg-slate-100 relative">
+              {/* Google Map iframe */}
+              <iframe
+                title="Digioverse Office Woking"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2493.6843477121727!2d-0.5606473233895521!3d51.31682857199432!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4876db4bcba30b65%3A0x673967406e57973d!2s1A%20North%20Rd%2C%20Woking%20GU21%205DS%2C%20UK!5e0!3m2!1sen!2sua!4v1718000000000!5m2!1sen!2sua"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen={true}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
             </div>
           </div>
 
@@ -623,7 +792,7 @@ export default function GrowLandingPage() {
       </section>
 
       {/* FAQ Accordion Section */}
-      <section className="bg-white py-16 md:py-24 border-t border-[#ddd0f4]/40">
+      <section className="bg-[#f7f7fa] py-16 md:py-24 border-t border-[#ddd0f4]/40">
         <div className="max-w-[800px] mx-auto px-5">
           <div className="text-center mb-12">
             <span className="text-xs font-bold text-[#6a00ff] uppercase tracking-wider">Frequently Asked Questions</span>
@@ -632,7 +801,7 @@ export default function GrowLandingPage() {
             </h2>
           </div>
 
-          <div className="space-y-2">
+          <div className="space-y-2 bg-white p-6 md:p-8 rounded-3xl border border-[#ddd0f4]/50 shadow-[0_4px_24px_rgba(13,5,32,0.01)]">
             {faqs.map((faq, index) => (
               <AccordionItem
                 key={index}
@@ -749,12 +918,6 @@ export default function GrowLandingPage() {
               >
                 {formState === 'loading' ? 'Submitting Details...' : 'Request Free Consultation'}
               </button>
-
-              {formState === 'error' && (
-                <p className="text-red-400 text-[10px] text-center font-semibold mt-1">
-                  Failed to send. Please check your credentials and try again.
-                </p>
-              )}
             </form>
           )}
         </div>
