@@ -211,16 +211,41 @@ export default function GrowLandingPage() {
         keywords="web design agency uk, google ads marketing, custom website development, small business leads, domain hosting packages"
       />
 
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          "name": "Digioverse",
+          "image": "https://digioverse.com/assets/favicon.jpg",
+          "@id": "https://digioverse.com/#organization",
+          "url": "https://digioverse.com/grow",
+          "telephone": "+442046155575",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "1A North Rd",
+            "addressLocality": "Woking",
+            "addressRegion": "Surrey",
+            "postalCode": "GU21 5DS",
+            "addressCountry": "GB"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 51.3168285,
+            "longitude": -0.5606473
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "32"
+          }
+        })}
+      </script>
+
       {/* Simplified PPC Header */}
       <nav className="fixed top-0 left-0 w-full bg-[#f7f7fa]/85 backdrop-blur-[12px] border-b border-[#ddd0f4]/45 z-[1000] py-4 transition-all">
         <div className="max-w-[1280px] mx-auto px-5 md:px-8 lg:px-12 flex items-center justify-between">
-          <a href="/" className="flex items-center gap-2 group">
-            <div className="w-9 h-9 bg-gradient-to-br from-[#6a00ff] to-[#3b0a75] rounded-xl flex items-center justify-center shadow-[0_4px_12px_rgba(106,0,255,0.2)]">
-              <span className="text-white font-extrabold text-lg font-['Plus_Jakarta_Sans']">D</span>
-            </div>
-            <span className="text-[#0d0520] font-extrabold text-xl tracking-tight font-['Plus_Jakarta_Sans']">
-              Digioverse
-            </span>
+          <a href="/" className="flex items-center gap-3 transition-transform duration-300 hover:-translate-y-0.5" aria-label="Digioverse home">
+            <img src="/assets/digioverse-logo.png" alt="Digioverse" className="h-11 w-auto drop-shadow-[0_8px_18px_rgba(13,5,32,0.14)]" />
           </a>
 
           <div className="flex items-center gap-4">
