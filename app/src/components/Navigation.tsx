@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Code, Target, Palette, Monitor, Search, ShoppingCart, Share2, Fingerprint, Printer, MapPin, Wrench, Server, Phone } from 'lucide-react';
+import { Menu, X, Code, Target, Palette, Monitor, Search, ShoppingCart, Share2, Fingerprint, Printer, MapPin, Wrench, Server, Phone, Rocket } from 'lucide-react';
 
 const services = {
   Build: [
@@ -17,6 +17,7 @@ const services = {
     { icon: Target, title: 'Google Ads', desc: 'High-intent PPC management', href: '/services/google-ads' },
     { icon: Target, title: 'Meta Ads', desc: 'Facebook & Instagram campaigns', href: '/services/meta-ads' },
     { icon: Share2, title: 'Social Media', desc: 'Content & community management', href: '/services/social-media' },
+    { icon: Rocket, title: 'Lead Funnel (Grow)', desc: 'High-converting ad campaign page', href: '/grow' },
   ],
   Brand: [
     { icon: Fingerprint, title: 'Branding & Identity', desc: 'Complete brand systems', href: '/services/branding-identity' },

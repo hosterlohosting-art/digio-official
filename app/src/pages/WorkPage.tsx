@@ -10,20 +10,20 @@ import SEO from '../components/SEO';
 const filters = ['All', 'Paid Advertising', 'Web Development', 'Creative Studio', 'SEO', 'SaaS', 'Branding', 'Landing Pages'];
 
 const projects = [
-  { image: '/assets/ppc-lead-acquisition-funnel.png', category: 'Paid Advertising', title: 'Google Ads Acquisition System' },
+  { image: '/assets/google_map_scrapper_mockup.jpg', category: 'Paid Advertising', title: 'Google Ads Acquisition System' },
   { image: '/assets/meta-ads-creative.jpg', category: 'Creative Studio', title: 'Meta Ads Creative Direction' },
-  { image: '/assets/premium-tech-hero-bg.png', category: 'Web Development', title: 'Premium Tech Website System' },
-  { image: '/assets/premium-saas-hero.png', category: 'SaaS', title: 'SaaS Launch Experience' },
-  { image: '/assets/attorney-core-practice-platform.png', category: 'SaaS', title: 'Attorney Core Platform' },
-  { image: '/assets/omnilo-logo.png', category: 'SaaS', title: 'Omnilo Lead Platform' },
-  { image: '/assets/hosterlo-logo.png', category: 'Web Development', title: 'Hosterlo Infrastructure Brand' },
-  { image: '/assets/gowasender-logo.png', category: 'SaaS', title: 'GoWaSender Messaging Product' },
+  { image: '/assets/hosterlo_mockup.jpg', category: 'Web Development', title: 'Premium Tech Website System' },
+  { image: '/assets/nexora_mockup.png', category: 'SaaS', title: 'SaaS Launch Experience' },
+  { image: '/assets/attorney_core_mockup.jpg', category: 'SaaS', title: 'Attorney Core Platform' },
+  { image: '/assets/omnilo_mockup.png', category: 'SaaS', title: 'Omnilo Lead Platform' },
+  { image: '/assets/hosterlo_mockup.jpg', category: 'Web Development', title: 'Hosterlo Infrastructure Brand' },
+  { image: '/assets/gowasender-dashboard-v2.png', category: 'SaaS', title: 'GoWaSender Messaging Product' },
   { image: '/assets/uh-properties-real-estate.png', category: 'SEO', title: 'UH Properties Digital Growth' },
   { image: '/assets/featured-blog.jpg', category: 'SEO', title: 'Search Content Engine' },
-  { image: '/assets/omnilo-logo.png', category: 'Branding', title: 'Omnilo Corporate Rebrand & Design System' },
-  { image: '/assets/hosterlo-logo.png', category: 'Branding', title: 'Hosterlo Infrastructure Identity Suite' },
-  { image: '/assets/premium-tech-hero-bg.png', category: 'Landing Pages', title: 'UK Energy Direct Response Landing Page' },
-  { image: '/assets/premium-saas-hero.png', category: 'Landing Pages', title: 'SaaS Beta Sign-up Landing Page' },
+  { image: '/assets/omnilo_mockup.png', category: 'Branding', title: 'Omnilo Corporate Rebrand & Design System' },
+  { image: '/assets/hosterlo_mockup.jpg', category: 'Branding', title: 'Hosterlo Infrastructure Identity Suite' },
+  { image: '/assets/hosterlo_mockup.jpg', category: 'Landing Pages', title: 'UK Energy Direct Response Landing Page' },
+  { image: '/assets/google_map_scrapper_mockup.jpg', category: 'Landing Pages', title: 'SaaS Beta Sign-up Landing Page' },
 ];
 
 export default function WorkPage() {
@@ -110,7 +110,7 @@ export default function WorkPage() {
           <div className="grid md:grid-cols-[55%_45%] gap-12 mt-16">
             <div>
               <ScrollReveal>
-                <img src="/assets/ppc-lead-acquisition-funnel.png" alt="Google Ads growth dashboard" className="rounded-2xl w-full aspect-video object-cover" />
+                <img src="/assets/google_map_scrapper_mockup.jpg" alt="Google Ads growth dashboard" className="rounded-2xl w-full aspect-video object-cover" />
               </ScrollReveal>
               <ScrollReveal delay={0.2}>
                 <h4 className="text-xl font-semibold text-[#f7f7fa] font-['Plus_Jakarta_Sans'] mt-8">Challenge</h4>

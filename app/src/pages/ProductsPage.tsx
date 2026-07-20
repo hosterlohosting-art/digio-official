@@ -7,7 +7,7 @@ import { Check, ArrowRight } from 'lucide-react';
 
 const products = [
   {
-    image: '/assets/attorney-core-dashboard-v2.png',
+    image: '/assets/attorney_core_mockup.jpg',
     name: 'Attorney Core',
     category: 'Legal SaaS',
     description: 'Practice management software for modern law firms with case workflows, client intake, billing, and document automation.',
@@ -21,7 +21,7 @@ const products = [
     cta: 'Book Attorney Core Demo',
   },
   {
-    image: '/assets/omnilo-dashboard-v2.png',
+    image: '/assets/omnilo_mockup.png',
     name: 'Omnilo',
     category: 'CRM & Lead Management',
     description: 'A lead and outreach platform built to help service businesses capture, organise, and convert opportunities faster.',
@@ -35,7 +35,7 @@ const products = [
     cta: 'Explore Omnilo features',
   },
   {
-    image: '/assets/hosterlo-dashboard-v2.png',
+    image: '/assets/hosterlo_mockup.jpg',
     name: 'Hosterlo',
     category: 'Cloud Infrastructure',
     description: 'Managed hosting and infrastructure for fast, secure websites with dependable support and modern deployment workflows.',

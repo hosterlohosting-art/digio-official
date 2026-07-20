@@ -56,7 +56,7 @@ const team = [
 
 const featuredProjects = [
   { 
-    image: '/assets/ppc-lead-acquisition-funnel.png', 
+    image: '/assets/google_map_scrapper_mockup.jpg', 
     title: 'Google Ads Acquisition System', 
     businessType: 'PPC Lead Gen',
     description: 'Designed high-converting landing pages combined with optimized Google Search campaign structures for local service companies.',
@@ -64,7 +64,7 @@ const featuredProjects = [
     link: '/work'
   },
   { 
-    image: '/assets/premium-tech-hero-bg.png', 
+    image: '/assets/hosterlo_mockup.jpg', 
     title: 'Premium Corporate Platform', 
     businessType: 'Web Development',
     description: 'A blazing-fast custom React website set up with secure SSL, premium hosting, sitemap registration, and Google schema integration.',
@@ -72,7 +72,7 @@ const featuredProjects = [
     link: '/work'
   },
   { 
-    image: '/assets/premium-saas-hero.png', 
+    image: '/assets/nexora_mockup.png', 
     title: 'SaaS Platform Release', 
     businessType: 'SaaS Product',
     description: 'Interactive dashboard interfaces and automated email setups helping growth brands acquire beta signups rapidly.',
